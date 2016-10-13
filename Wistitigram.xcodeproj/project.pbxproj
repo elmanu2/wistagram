@@ -1,0 +1,90 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		3244A3AB1DAF5912007CADA6 /* photo.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = photo.py; sourceTree = "<group>"; };
+		3244A3AC1DAF5912007CADA6 /* printFormat.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = printFormat.py; sourceTree = "<group>"; };
+		3244A3AD1DAF5999007CADA6 /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		3244A3AE1DAF599E007CADA6 /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		3244A3AF1DAF5A9A007CADA6 /* conversion.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = conversion.py; sourceTree = "<group>"; };
+		32546C631DAD2C5C00304E02 /* print.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = print.py; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		3244A3AA1DAF5912007CADA6 /* classes */ = {
+			isa = PBXGroup;
+			children = (
+				3244A3AD1DAF5999007CADA6 /* __init__.py */,
+				3244A3AB1DAF5912007CADA6 /* photo.py */,
+				3244A3AC1DAF5912007CADA6 /* printFormat.py */,
+			);
+			path = classes;
+			sourceTree = "<group>";
+		};
+		32A3A3081DAD2BE6006790E9 = {
+			isa = PBXGroup;
+			children = (
+				3244A3AA1DAF5912007CADA6 /* classes */,
+				3244A3AE1DAF599E007CADA6 /* __init__.py */,
+				32546C631DAD2C5C00304E02 /* print.py */,
+				3244A3AF1DAF5A9A007CADA6 /* conversion.py */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		32A3A3091DAD2BE6006790E9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+			};
+			buildConfigurationList = 32A3A30C1DAD2BE6006790E9 /* Build configuration list for PBXProject "Wistitigram" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 32A3A3081DAD2BE6006790E9;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		32A3A30D1DAD2BE6006790E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		32A3A30E1DAD2BE6006790E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		32A3A30C1DAD2BE6006790E9 /* Build configuration list for PBXProject "Wistitigram" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32A3A30D1DAD2BE6006790E9 /* Debug */,
+				32A3A30E1DAD2BE6006790E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 32A3A3091DAD2BE6006790E9 /* Project object */;
+}
