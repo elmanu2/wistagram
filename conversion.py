@@ -15,9 +15,9 @@ def mm2inch(lengthInMm):
 #return pixel per millimeter
 def ppmm(resolution,length,dimension="mm"):
     if(dimension == "in"):
-        return resolution / inch2mm(length)
+        return resolution / float(inch2mm(length))
     else:
-        return resolution / length
+        return resolution / float(length)
 
 def ppmm2ppi(ppmm):
     return int(math.floor(ppmm / mm2inch(1)))
@@ -29,9 +29,9 @@ def length(resolution,ppmm):
 #return resolution
 def resolution(length, ppmm,dimension="mm"):
     if(dimension == "in"):
-        return inch2mm(length) / ppmm
+        return inch2mm(length) / float(ppmm)
     else:
-        return length / ppmm
+        return length / float(ppmm)
 
 
 

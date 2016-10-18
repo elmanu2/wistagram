@@ -81,24 +81,54 @@ def unitTesting():
     assert(testEqualWithAccuracy(printAreaHeight,142.4,0.01))
     assert(testEqualWithAccuracy(printFormat.ratio(),4.0/6.0,0.01))
     assert(testEqualWithAccuracy(printFormat.printableRatio(),91.6/142.4,0.01))
+
+    printFormatSelphy = PrintFormat(100,148,"mm")
+    printFormatSelphy.setMargin(0,0,"mm")
+    (printAreaWidth,printAreaHeight) = printFormatSelphy.getPrintableArea()
+    assert(testEqualWithAccuracy(printAreaWidth,100,0.01))
+    assert(testEqualWithAccuracy(printAreaHeight,148,0.01))
+
     print "TESTS ON PRINTER FORMAT PASSED SUCCESSFULLY"
 
     #Compute PPI
+    printFormat = PrintFormat(4,6,"in")
+    printFormat.setMargin(10,10,"mm")
+
     photo = Photo(612,612)
     photo.computePpmm(printFormat)
     assert(testEqualWithAccuracy(photo.ppmm,6.68122270742,0.01))
     assert(testEqualWithAccuracy(photo.ppi,169.0,0.01))
+    assert(testEqualWithAccuracy(photo.ppiX,169.0,0.01))
+    assert(testEqualWithAccuracy(photo.ppiY,169.0,0.01))
+
     (width,height) = photo.getSize()
     assert(testEqualWithAccuracy(width,91.6,0.01))
     assert(testEqualWithAccuracy(height,91.6,0.01))
 
-    photo = Photo(1080,1007)
+    photo = Photo(1080,1080)
     photo.computePpmm(printFormat)
-    assert(testEqualWithAccuracy(photo.ppmm,11.7903930131,0.01))
+    assert(testEqualWithAccuracy(photo.ppmm,11.79,0.01))
     assert(testEqualWithAccuracy(photo.ppi,299.0,0.01))
+    assert(testEqualWithAccuracy(photo.ppiX,299.0,0.01))
+    assert(testEqualWithAccuracy(photo.ppiY,299.0,0.01))
+
     (width,height) = photo.getSize()
     assert(testEqualWithAccuracy(width,91.6,0.01))
-    assert(testEqualWithAccuracy(height,85.41,0.01))
+    assert(testEqualWithAccuracy(height,91.6,0.01))
+
+    #Test Clutcho file as full print
+    photo = Photo(1181,1771)
+    photo.setFullPrint(True)
+    photo.computePpmm(printFormatSelphy)
+    assert(testEqualWithAccuracy(photo.ppmmX,11.81,0.01))
+    assert(testEqualWithAccuracy(photo.ppmmY,11.966,0.01))
+    assert(testEqualWithAccuracy(photo.ppiX,299,0.01))
+    assert(testEqualWithAccuracy(photo.ppiY,303,0.01))
+
+    (width,height) = photo.getSize()
+    assert(testEqualWithAccuracy(width,100.0,0.01))
+    assert(testEqualWithAccuracy(height,148,0.01))
+
     print "TESTS ON PPI COMPUTATION PASSED SUCCESSFULLY"
 
 #print command : lpr -P Canon_CP900 -o media="Postcard(4x6in)" [filepath]
@@ -128,9 +158,11 @@ def main():
     print files
     print "%s files found" %(len(files))
     #Create a post card print format (Selphy 900: 4x6 inches)
-    printFormat = PrintFormat(4,6,"in")
-    #Add a margin (top=bottom=left=right=5mm)
-    printFormat.setMargin(10,10,"mm")
+    #paper : 100x148mm
+    printFormat = PrintFormat(100,148,"mm")
+    #printFormat = PrintFormat(4,6,"in")
+    #Add a margin (top=bottom=left=right=-0.5mm)
+    printFormat.setMargin(-1,-1,"mm")
     print "********************************"
 
     userInput = ""
@@ -146,17 +178,26 @@ def main():
 
 
         im = Image.open(filepath)
+        exif_data = im._getexif()
+        print im.info
+        print exif_data
         photo = Photo(im.size[0],im.size[1])
+        photo.setFullPrint(True)
         photo.computePpmm(printFormat)
         print "********************************"
         print "File %s on %s : %s" %(index+1,len(files),files[index])
-        print "[resX/resY/Width/Height/PPI] : [%s/%s/%smm/%smm/%s]" %(photo.resX,photo.resY,photo.width, photo.height,photo.ppi)
+        print "[resX/resY/Width/Height/PPIX,PPIY] : [%s/%s/%smm/%smm/%s/%s]" %(photo.resX,photo.resY,photo.width, photo.height,photo.ppiX,photo.ppiY)
 
         #User choose the action
         userInput = raw_input("Print? print/next/display/quit [p/n/d/q]")
         #print "Resultat %s" % userInput
         if userInput == "p":
-            im.save(fileOutput, dpi = (photo.ppi,photo.ppi))
+
+
+            im.save(fileOutput, 'jpeg', dpi = (photo.ppiX,photo.ppiY))
+            im2 = Image.open(fileOutput)
+
+            print im2.info
             printCommand(fileOutput)
             print "WARNING : YOU CAN PRINT THE SAME IMAGE"
         elif userInput == "n":
