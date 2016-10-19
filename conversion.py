@@ -21,7 +21,8 @@ def ppmm(resolution,length,dimension="mm"):
 
 def ppmm2ppi(ppmm):
     return int(math.floor(ppmm / mm2inch(1)))
-#return ppmm / mm2inch(1)
+    #We can't set a ppi as int when saving file with PIL
+    #return ppmm / mm2inch(1)
 
 def ppi2ppmm(ppi):
     return float(ppi / inch2mm(1))
