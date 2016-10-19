@@ -32,12 +32,11 @@ def testFileWithSelphyCP900(filepath,dpiX,dpiY):
     assert(imageDpiY == dpiY)
 
 def testFileWithSelphyCP900Template(filepath,dpiX,dpiY):
-    printFormat = PrintFormat.SelphyCP900()
+    printFormat = PrintFormat.SelphyCP900(fullprint=True)
     printFormat.setPrinterMargin(-1,-1,"mm")
 
     im = Image.open(filepath)
     photo = Photo(im.size[0],im.size[1])
-    photo.setFullPrint(True)
     photo.computePpmm(printFormat)
 
     (filepathWithoutExtension,extension) = os.path.splitext(filepath)
@@ -67,14 +66,57 @@ def testSelphyCP900Template():
 def testAddTemplate():
     print "\n****TEST ADDING TEMPLATE****"
     photopath = "./resources/test/bentalou/712495213394164801.jpg"
-    templatepath = "./resources/test/template/COR-MARS16_elements-template-gimp.jpg"
-    templatepath = addMarginOnTemplate(templatepath,30)
-    photoPath = addPhotoOnTemplate(photopath,templatepath,margin=60)
-    photoWithTemplate = Image.open(photoPath)
+    templatePathOrigin = "./resources/test/template/COR-MARS16_elements-template-gimp.jpg"
+    templatePath = templatePathOrigin
+    printMargin = 30
+    templateMargin = 60
 
+    #Add a margin on the template (add new pixel for printer margin)
+    templatePath = addMarginOnTemplate(templatePath,printMargin)
+
+    #Add a photo on the template
+    photoPath = addPhotoOnTemplate(photopath,templatePath,margin=templateMargin)
+
+    #Create photo settings
+    photoWithTemplate = Image.open(photoPath)
+    print photoWithTemplate.size[0]
     photoSettings = Photo(photoWithTemplate.size[0],photoWithTemplate.size[1])
-    print photoWithTemplate.info
+    print photoSettings
+
+    #Create printer
+    printer = PrintFormat.SelphyCP900(fullprint=True)
+
+    #Adapt dpi
+    photoSettings.computePpmm(printer)
+
+    #Save file
+    fileOutput = generateFilepathWithSuffix(photoPath,"-CP900-print")
+    photoWithTemplate.save(fileOutput, 'jpeg', dpi=(photoSettings.ppiX,photoSettings.ppiY))
+    print photoSettings
     
+    #TEST
+    testTemplateOrigin = Image.open(templatePathOrigin)
+    testTemplateMargin = Image.open(templatePath)
+    sizeOrigin = testTemplateOrigin.size
+    sizeTemplateMargin = testTemplateMargin.size
+    sizePhotoWithTemplate = photoWithTemplate.size
+    assert( sizeOrigin[0], 1121)
+    assert( sizeOrigin[1], 1771)
+    assert( sizeTemplateMargin[0], 1241)
+    assert( sizeTemplateMargin[1], 1831)
+    assert( sizePhotoWithTemplate[0], 1241)
+    assert( sizePhotoWithTemplate[1], 1831)
+
+    imTest = Image.open(fileOutput)
+    (imageDpiX,imageDpiY) = imTest.info['dpi']
+    assert(imageDpiX == 315)
+    assert(imageDpiY == 314)
+
+
+
+
+
+
 
 
 #    filepath = "./resources/test/bentalou/712495213394164801.jpg"
@@ -159,6 +201,7 @@ def unitTesting():
 
     #Compute PPI
     printFormat = PrintFormat(4,6,"in")
+    printFormat.setFullPrint(False)
     printFormat.setPrinterMargin(10,10,"mm")
 
     photo = Photo(612,612)
@@ -185,7 +228,8 @@ def unitTesting():
 
     #Test Clutcho file as full print
     photo = Photo(1181,1771)
-    photo.setFullPrint(True)
+    printFormatSelphy.setFullPrint(True)
+    print printFormatSelphy.fullPrint
     photo.computePpmm(printFormatSelphy)
     assert(testEqualWithAccuracy(photo.ppmmX,11.81,0.01))
     assert(testEqualWithAccuracy(photo.ppmmY,11.966,0.01))

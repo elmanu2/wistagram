@@ -71,7 +71,7 @@ def main():
     print "%s files found" %(len(files))
     #Create a post card print format (Selphy 900: 4x6 inches)
     #paper : 100x148mm
-    printFormat = PrintFormat.SelphyCP900()
+    printFormat = PrintFormat.SelphyCP900(fullprint=False)
     #printFormat = PrintFormat(4,6,"in")
     #Add a margin (top=bottom=left=right=-0.5mm)
     printFormat.setPrinterMargin(-1,-1,"mm")
@@ -94,7 +94,6 @@ def main():
         #print im.info
         #print exif_data
         photo = Photo(im.size[0],im.size[1])
-        photo.setFullPrint(True)
         photo.computePpmm(printFormat)
         print "********************************"
         print "File %s on %s : %s" %(index+1,len(files),files[index])

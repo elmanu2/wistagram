@@ -11,21 +11,18 @@ class Photo(object):
     def __init__(self,resX,resY,dimension="mm"):
         self.resX = resX
         self.resY = resY
-        self.ppmm = 2,8346
+        self.ppmm = 2.8346
         self.ppi = 72
-        self.ppix = self.ppi
+        self.ppiX = self.ppi
         self.ppiY = self.ppi
         self.ppmmX = self.ppmm
         self.ppmmY = self.ppmm
-        self.fullPrint = False
+        self.width = self.resX / self.ppmmX
+        self.height = self.resY / self.ppmmY
     #print "create photo"
 
     def ratio(self):
         return self.resX / float(self.resY)
-
-    #Will stretch the Image when printing if true
-    def setFullPrint(self,state):
-        self.fullPrint = state
 
     def printInfo(self):
         print "[resX-resY-ppi] [%d-%d-%d]" %(self.resX,self.resY,self.ppi)
@@ -38,7 +35,7 @@ class Photo(object):
         self.ppmm = max(self.ppmmX,self.ppmmY)
         self.ppi = ppmm2ppi(self.ppmm)
 
-        if(self.fullPrint == False):
+        if(printFormat.fullPrint == False):
             self.width = self.resX / self.ppmm
             self.height = self.resY / self.ppmm
             self.ppiX = ppmm2ppi(self.ppmm)
