@@ -22,8 +22,7 @@ def testFileWithSelphyCP900(filepath,dpiX,dpiY):
     photo = Photo(im.size[0],im.size[1])
     photo.computePpmm(printFormat)
 
-    (filepathWithoutExtension,extension) = os.path.splitext(filepath)
-    fileOutput = filepathWithoutExtension + "-CP900-print" + extension
+    fileOutput = generateFilepathWithSuffix(filepath,"-CP900-print")
     im.save(fileOutput, 'jpeg', dpi = (photo.ppiX,photo.ppiY))
     print fileOutput
     imTest = Image.open(fileOutput)
@@ -39,8 +38,7 @@ def testFileWithSelphyCP900Template(filepath,dpiX,dpiY):
     photo = Photo(im.size[0],im.size[1])
     photo.computePpmm(printFormat)
 
-    (filepathWithoutExtension,extension) = os.path.splitext(filepath)
-    fileOutput = filepathWithoutExtension + "-CP900-print" + extension
+    fileOutput = generateFilepathWithSuffix(filepath,"-CP900-print")
     im.save(fileOutput, 'jpeg', dpi = (photo.ppiX,photo.ppiY))
     print fileOutput
     imTest = Image.open(fileOutput)
@@ -113,49 +111,7 @@ def testAddTemplate():
     assert(imageDpiX == 315)
     assert(imageDpiY == 314)
 
-
-
-
-
-
-
-
-#    filepath = "./resources/test/bentalou/712495213394164801.jpg"
-#    template = Image.open("./resources/test/template/COR-MARS16_elements-template-gimp.jpg")
-#    image = Image.open(filepath)
-#
-#    #Computation
-#    margin = 30
-#    photo = Photo(image.size[0],image.size[1])
-#    (resizePhoto,resizeTemplate) = photo.addTemplate(template.size[0],template.size[1],margin)
-#    image = image.resize(resizePhoto,Image.ANTIALIAS)
-#    template = template.resize(resizeTemplate,Image.ANTIALIAS)
-#
-#    template.paste(image, (margin,margin))
-#
-#
-#    #TO PRINTER
-#    printFormat = PrintFormat.SelphyCP900()
-#    printFormat.setPrinterMargin(-1,-1,"mm")
-#
-#
-#    finalPhoto = Photo(template.size[0],template.size[1])
-#    finalPhoto.setFullPrint(True)
-#    finalPhoto.computePpmm(printFormat)
-#    print "[resX/resY/Width/Height/PPIX,PPIY] : [%s/%s/%smm/%smm/%s/%s]" %(finalPhoto.resX,finalPhoto.resY,finalPhoto.width, finalPhoto.height,finalPhoto.ppiX,finalPhoto.ppiY)
-#
-#
-#
-#    (filepathWithoutExtension,extension) = os.path.splitext(filepath)
-#    fileOutput = filepathWithoutExtension + "-CP900-template-print" + extension
-#    print (finalPhoto.ppiX,finalPhoto.ppiY)
-#    template.save(fileOutput, 'jpeg', dpi = (finalPhoto.ppiX,finalPhoto.ppiY))
-#    print fileOutput
-#    imTest = Image.open(fileOutput)
-#    (imageDpiX,imageDpiY) = imTest.info['dpi']
-#    printCommand(fileOutput)
-
-
+    print"TESTS ON MARGIN + TEMPLATE + PHOTO  PASSED SUCCESSFULLY"
 
 def unitTesting():
 
@@ -249,7 +205,7 @@ def main():
     testSelphyCP900()
     testSelphyCP900Template()
     testAddTemplate()
-    print "\n"
+    print "\n\n***TESTS PASSED SUCCESSFULLY***\n"
     return
 if __name__ == "__main__":
     main()

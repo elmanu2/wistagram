@@ -75,7 +75,7 @@ def main():
     #Create a post card print format (Selphy CP900)
     #paper : 100x148mm
     printFormat = PrintFormat.SelphyCP900(fullprint=True)
-    printFormat.setPrinterMargin(0,0,"mm")
+    printFormat.setPrinterMargin(-1,-1,"mm")
 
 
     #Add a margin on the template (add new pixel for printer margin)
