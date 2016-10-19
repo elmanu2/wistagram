@@ -7,10 +7,13 @@ import math
 
 from conversion import *
 
+
+#Class to compute PPI(or DPI)
 class Photo(object):
     def __init__(self,resX,resY,dimension="mm"):
         self.resX = resX
         self.resY = resY
+        #default PPI
         self.ppmm = 2.8346
         self.ppi = 72
         self.ppiX = self.ppi
@@ -35,11 +38,13 @@ class Photo(object):
         self.ppmm = max(self.ppmmX,self.ppmmY)
         self.ppi = ppmm2ppi(self.ppmm)
 
+        #If no ppi stretching, then ppiX == ppiY = ppi
         if(printFormat.dpiStretch == False):
             self.width = self.resX / self.ppmm
             self.height = self.resY / self.ppmm
             self.ppiX = ppmm2ppi(self.ppmm)
             self.ppiY = ppmm2ppi(self.ppmm)
+        #else ppi stretching
         else:
             self.width = self.resX / self.ppmmX
             self.height = self.resY / self.ppmmY
@@ -59,18 +64,22 @@ class Photo(object):
         self.computePpmm(printFormat)
         return self.ppi
 
+    #compute value to resize photo or template
+    #Thanks to this function, we keep a good ppi for printer
     #margin in pixel
     def addTemplate(self,templateResX,templateResY,margin):
         #if photo is greater than template
         newResX =newResY = 0
+        #if photo with margin is bigger than template
         if ( (self.resX + margin * 2) > templateResX):
+            #Keep photo size, resize template
             newPhotoResX = self.resX
             newPhotoResY = self.resY
             newTemplateResX = self.resX + margin * 2
             newTemplateResY = newTemplateResX * templateResY / float(templateResX)
             newTemplateResX = int(math.floor(newTemplateResX))
             newTemplateResY = int(math.floor(newTemplateResY))
-        #if photo is smaller than template
+        #if photo with margin is smaller than template
         else :
             newPhotoResX = int(math.floor(templateResX - margin * 2))
             newPhotoResY = int(math.floor(newPhotoResX / self.ratio()))

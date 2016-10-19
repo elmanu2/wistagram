@@ -76,6 +76,7 @@ def main():
     #paper : 100x148mm
     printFormat = PrintFormat.SelphyCP900(dpiStretch=True)
     printFormat.setPrinterMargin(-1,-1,"mm")
+    print printFormat
 
 
     #Add a margin on the template (add new pixel for printer margin)
