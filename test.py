@@ -5,6 +5,7 @@ from classes.photo import Photo
 from classes.printFormat import PrintFormat
 from conversion import *
 from printer import *
+from compositing import *
 
 def testEqualWithAccuracy(float1,float2,precision):
     if ( math.fabs(float1 - float2) < precision):
@@ -14,8 +15,8 @@ def testEqualWithAccuracy(float1,float2,precision):
         return False
 
 def testFileWithSelphyCP900(filepath,dpiX,dpiY):
-    printFormat = PrintFormat(100,148,"mm")
-    printFormat.setMargin(10,10,"mm")
+    printFormat = PrintFormat.SelphyCP900()
+    printFormat.setPrinterMargin(10,10,"mm")
 
     im = Image.open(filepath)
     photo = Photo(im.size[0],im.size[1])
@@ -31,8 +32,8 @@ def testFileWithSelphyCP900(filepath,dpiX,dpiY):
     assert(imageDpiY == dpiY)
 
 def testFileWithSelphyCP900Template(filepath,dpiX,dpiY):
-    printFormat = PrintFormat(100,148,"mm")
-    printFormat.setMargin(-1,-1,"mm")
+    printFormat = PrintFormat.SelphyCP900()
+    printFormat.setPrinterMargin(-1,-1,"mm")
 
     im = Image.open(filepath)
     photo = Photo(im.size[0],im.size[1])
@@ -65,37 +66,51 @@ def testSelphyCP900Template():
 
 def testAddTemplate():
     print "\n****TEST ADDING TEMPLATE****"
-    filepath = "./resources/test/bentalou/712495213394164801.jpg"
-    template = Image.open("./resources/test/template/COR-MARS16_elements-template-gimp.jpg")
-    image = Image.open(filepath)
+    photopath = "./resources/test/bentalou/712495213394164801.jpg"
+    templatepath = "./resources/test/template/COR-MARS16_elements-template-gimp.jpg"
+    templatepath = addMarginOnTemplate(templatepath,30)
+    photoPath = addPhotoOnTemplate(photopath,templatepath,margin=60)
+    photoWithTemplate = Image.open(photoPath)
 
-    #Computation
-    margin = 30
-    photo = Photo(image.size[0],image.size[1])
-    (resizePhoto,resizeTemplate) = photo.addTemplate(template.size[0],template.size[1],margin)
-    image = image.resize(resizePhoto,Image.ANTIALIAS)
-    template = template.resize(resizeTemplate,Image.ANTIALIAS)
-
-    template.paste(image, (margin,margin))
+    photoSettings = Photo(photoWithTemplate.size[0],photoWithTemplate.size[1])
+    print photoWithTemplate.info
+    
 
 
-    #TO PRINTER
-    printFormat = PrintFormat(100,148,"mm")
-    printFormat.setMargin(-1,-1,"mm")
-
-
-    finalPhoto = Photo(template.size[0],template.size[1])
-    finalPhoto.setFullPrint(True)
-    finalPhoto.computePpmm(printFormat)
-
-    (filepathWithoutExtension,extension) = os.path.splitext(filepath)
-    fileOutput = filepathWithoutExtension + "-CP900-template-print" + extension
-    print (finalPhoto.ppiX,finalPhoto.ppiY)
-    template.save(fileOutput, 'jpeg', dpi = (finalPhoto.ppiX,finalPhoto.ppiY))
-    print fileOutput
-    imTest = Image.open(fileOutput)
-    (imageDpiX,imageDpiY) = imTest.info['dpi']
-    printCommand(fileOutput)
+#    filepath = "./resources/test/bentalou/712495213394164801.jpg"
+#    template = Image.open("./resources/test/template/COR-MARS16_elements-template-gimp.jpg")
+#    image = Image.open(filepath)
+#
+#    #Computation
+#    margin = 30
+#    photo = Photo(image.size[0],image.size[1])
+#    (resizePhoto,resizeTemplate) = photo.addTemplate(template.size[0],template.size[1],margin)
+#    image = image.resize(resizePhoto,Image.ANTIALIAS)
+#    template = template.resize(resizeTemplate,Image.ANTIALIAS)
+#
+#    template.paste(image, (margin,margin))
+#
+#
+#    #TO PRINTER
+#    printFormat = PrintFormat.SelphyCP900()
+#    printFormat.setPrinterMargin(-1,-1,"mm")
+#
+#
+#    finalPhoto = Photo(template.size[0],template.size[1])
+#    finalPhoto.setFullPrint(True)
+#    finalPhoto.computePpmm(printFormat)
+#    print "[resX/resY/Width/Height/PPIX,PPIY] : [%s/%s/%smm/%smm/%s/%s]" %(finalPhoto.resX,finalPhoto.resY,finalPhoto.width, finalPhoto.height,finalPhoto.ppiX,finalPhoto.ppiY)
+#
+#
+#
+#    (filepathWithoutExtension,extension) = os.path.splitext(filepath)
+#    fileOutput = filepathWithoutExtension + "-CP900-template-print" + extension
+#    print (finalPhoto.ppiX,finalPhoto.ppiY)
+#    template.save(fileOutput, 'jpeg', dpi = (finalPhoto.ppiX,finalPhoto.ppiY))
+#    print fileOutput
+#    imTest = Image.open(fileOutput)
+#    (imageDpiX,imageDpiY) = imTest.info['dpi']
+#    printCommand(fileOutput)
 
 
 
@@ -115,6 +130,8 @@ def unitTesting():
 
     assert(testEqualWithAccuracy(ppmm(612,91.6),6.68122270742,0.01))
     assert(testEqualWithAccuracy(ppmm2ppi(ppmm(612,91.6)),169.0,0.01))
+    #assert(testEqualWithAccuracy(ppi2ppmm(169.0,ppmm(612,91.6)),0.01))
+
 
     print "TESTS ON DIMENSION CONVERSION PASSED SUCCESSFULLY"
 
@@ -125,15 +142,15 @@ def unitTesting():
     printFormat = PrintFormat(4,6,"in")
     assert(testEqualWithAccuracy(printFormat.width,101.6,0.01))
     assert(testEqualWithAccuracy(printFormat.height,152.4,0.01))
-    printFormat.setMargin(10,10,"mm")
+    printFormat.setPrinterMargin(10,10,"mm")
     (printAreaWidth,printAreaHeight) = printFormat.getPrintableArea()
     assert(testEqualWithAccuracy(printAreaWidth,91.6,0.01))
     assert(testEqualWithAccuracy(printAreaHeight,142.4,0.01))
     assert(testEqualWithAccuracy(printFormat.ratio(),4.0/6.0,0.01))
     assert(testEqualWithAccuracy(printFormat.printableRatio(),91.6/142.4,0.01))
 
-    printFormatSelphy = PrintFormat(100,148,"mm")
-    printFormatSelphy.setMargin(0,0,"mm")
+    printFormatSelphy = PrintFormat.SelphyCP900()
+    printFormatSelphy.setPrinterMargin(0,0,"mm")
     (printAreaWidth,printAreaHeight) = printFormatSelphy.getPrintableArea()
     assert(testEqualWithAccuracy(printAreaWidth,100,0.01))
     assert(testEqualWithAccuracy(printAreaHeight,148,0.01))
@@ -142,7 +159,7 @@ def unitTesting():
 
     #Compute PPI
     printFormat = PrintFormat(4,6,"in")
-    printFormat.setMargin(10,10,"mm")
+    printFormat.setPrinterMargin(10,10,"mm")
 
     photo = Photo(612,612)
     photo.computePpmm(printFormat)

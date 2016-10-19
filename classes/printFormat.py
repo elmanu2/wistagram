@@ -17,6 +17,11 @@ class PrintFormat(object):
             self.height = height
         print "create print format %smm %smm" %(self.width,self.height)
 
+    @staticmethod
+    def SelphyCP900():
+        printer = PrintFormat(100,148,"mm")
+        return printer
+
     def ratio(self):
         return self.width / self.height
 
@@ -25,7 +30,7 @@ class PrintFormat(object):
         return printableAreaWidth / printableAreaHeight
 
     #Global margin, each is divided by 2 on left,right,top and bottom
-    def setMargin(self,marginWidth,marginHeight,dimension="mm"):
+    def setPrinterMargin(self,marginWidth,marginHeight,dimension="mm"):
         if (dimension=="in"):
             self.marginWidth = inch2mm(marginWidth)
             self.marginHeight = inch2mm(marginHeight)

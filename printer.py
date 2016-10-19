@@ -55,9 +55,6 @@ def printCommand(filename):
 
 def main():
 
-    #Make the tests
-    unitTesting()
-
     #The root directory
     inputDir = "/Users/manu/Desktop/wistiti/"
     subDirArray = getImmediateSubdirectories(inputDir)
@@ -74,10 +71,10 @@ def main():
     print "%s files found" %(len(files))
     #Create a post card print format (Selphy 900: 4x6 inches)
     #paper : 100x148mm
-    printFormat = PrintFormat(100,148,"mm")
+    printFormat = PrintFormat.SelphyCP900()
     #printFormat = PrintFormat(4,6,"in")
     #Add a margin (top=bottom=left=right=-0.5mm)
-    printFormat.setMargin(-1,-1,"mm")
+    printFormat.setPrinterMargin(-1,-1,"mm")
     print "********************************"
 
     userInput = ""
@@ -94,14 +91,14 @@ def main():
 
         im = Image.open(filepath)
         exif_data = im._getexif()
-        print im.info
-        print exif_data
+        #print im.info
+        #print exif_data
         photo = Photo(im.size[0],im.size[1])
         photo.setFullPrint(True)
         photo.computePpmm(printFormat)
         print "********************************"
         print "File %s on %s : %s" %(index+1,len(files),files[index])
-        print "[resX/resY/Width/Height/PPIX,PPIY] : [%s/%s/%smm/%smm/%s/%s]" %(photo.resX,photo.resY,photo.width, photo.height,photo.ppiX,photo.ppiY)
+        print photo
 
         #User choose the action
         userInput = raw_input("Print? print/next/display/quit [p/n/d/q]")
@@ -111,7 +108,6 @@ def main():
 
             im.save(fileOutput, 'jpeg', dpi = (photo.ppiX,photo.ppiY))
             im2 = Image.open(fileOutput)
-
             print im2.info
             printCommand(fileOutput)
             print "WARNING : YOU CAN PRINT THE SAME IMAGE"

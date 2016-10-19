@@ -11,7 +11,12 @@ class Photo(object):
     def __init__(self,resX,resY,dimension="mm"):
         self.resX = resX
         self.resY = resY
-        self.ppi = 1
+        self.ppmm = 2,8346
+        self.ppi = 72
+        self.ppix = self.ppi
+        self.ppiY = self.ppi
+        self.ppmmX = self.ppmm
+        self.ppmmY = self.ppmm
         self.fullPrint = False
     #print "create photo"
 
@@ -80,9 +85,13 @@ class Photo(object):
 
         return ((newPhotoResX,newPhotoResY),(newTemplateResX,newTemplateResY))
 
-
-
     def getSize(self):
         return (self.width,self.height)
+
+    def __repr__(self):
+        return "Photo()"
+
+    def __str__(self):
+        return "[resX/resY/Width/Height/PPIX,PPIY] : [%s/%s/%smm/%smm/%s/%s]" %(self.resX,self.resY,self.width, self.height,self.ppiX,self.ppiY)
 
 
