@@ -21,13 +21,13 @@ class PrintFormat(object):
         print "create print format %smm %smm" %(self.width,self.height)
 
     @staticmethod
-    def SelphyCP900(fullprint=False):
+    def SelphyCP900(dpiStretch=False):
         printer = PrintFormat(100,148,"mm")
-        printer.fullPrint = fullprint
+        printer.dpiStretch = dpiStretch
         return printer
 
-    def setFullPrint(self,state):
-        self.fullPrint = state
+    def setDpiStretch(self,state):
+        self.dpiStretch = state
 
     def ratio(self):
         return self.width / self.height

@@ -31,7 +31,7 @@ def testFileWithSelphyCP900(filepath,dpiX,dpiY):
     assert(imageDpiY == dpiY)
 
 def testFileWithSelphyCP900Template(filepath,dpiX,dpiY):
-    printFormat = PrintFormat.SelphyCP900(fullprint=True)
+    printFormat = PrintFormat.SelphyCP900(dpiStretch=True)
     printFormat.setPrinterMargin(-1,-1,"mm")
 
     im = Image.open(filepath)
@@ -83,7 +83,7 @@ def testAddTemplate():
     print photoSettings
 
     #Create printer
-    printer = PrintFormat.SelphyCP900(fullprint=True)
+    printer = PrintFormat.SelphyCP900(dpiStretch=True)
 
     #Adapt dpi
     photoSettings.computePpmm(printer)
@@ -158,7 +158,7 @@ def unitTesting():
 
     #Compute PPI
     printFormat = PrintFormat(4,6,"in")
-    printFormat.setFullPrint(False)
+    printFormat.setDpiStretch(False)
     printFormat.setPrinterMargin(10,10,"mm")
 
     photo = Photo(612,612)
@@ -185,8 +185,8 @@ def unitTesting():
 
     #Test Clutcho file as full print
     photo = Photo(1181,1771)
-    printFormatSelphy.setFullPrint(True)
-    print printFormatSelphy.fullPrint
+    printFormatSelphy.setDpiStretch(True)
+    print printFormatSelphy.dpiStretch
     photo.computePpmm(printFormatSelphy)
     assert(testEqualWithAccuracy(photo.ppmmX,11.81,0.01))
     assert(testEqualWithAccuracy(photo.ppmmY,11.966,0.01))

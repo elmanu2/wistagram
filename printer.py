@@ -74,7 +74,7 @@ def main():
     #The printer
     #Create a post card print format (Selphy CP900)
     #paper : 100x148mm
-    printFormat = PrintFormat.SelphyCP900(fullprint=True)
+    printFormat = PrintFormat.SelphyCP900(dpiStretch=True)
     printFormat.setPrinterMargin(-1,-1,"mm")
 
 

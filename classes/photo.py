@@ -35,7 +35,7 @@ class Photo(object):
         self.ppmm = max(self.ppmmX,self.ppmmY)
         self.ppi = ppmm2ppi(self.ppmm)
 
-        if(printFormat.fullPrint == False):
+        if(printFormat.dpiStretch == False):
             self.width = self.resX / self.ppmm
             self.height = self.resY / self.ppmm
             self.ppiX = ppmm2ppi(self.ppmm)
@@ -77,8 +77,8 @@ class Photo(object):
             newTemplateResX = templateResX
             newTemplateResY = templateResY
 
-#       print "NEW PHOTO RES : %s %s" %(newPhotoResX,newPhotoResY)
-#       print "NEW TEMPLATE RES : %s %s" %(newTemplateResX,newTemplateResY)
+        print "NEW PHOTO RES : %s %s" %(newPhotoResX,newPhotoResY)
+        print "NEW TEMPLATE RES : %s %s" %(newTemplateResX,newTemplateResY)
 
         return ((newPhotoResX,newPhotoResY),(newTemplateResX,newTemplateResY))
 
