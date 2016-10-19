@@ -81,6 +81,7 @@ def main():
     #Add a margin on the template (add new pixel for printer margin)
     templateFile = addMarginOnTemplate(templateFile,printMargin,marginColor=marginColor)
 
+    #Get the subdirectories of inputdir
     subDirArray = getImmediateSubdirectories(inputDir)
 
     #User choose the subdirectory
@@ -91,8 +92,8 @@ def main():
 
     #Display information for user
     print "********************************"
-    print files
     print "%s files found" %(len(files))
+    print files
     print "********************************"
 
     userInput = ""

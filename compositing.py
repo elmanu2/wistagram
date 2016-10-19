@@ -13,9 +13,9 @@ def generateFilepathWithSuffix(filepath,suffix):
 def addMarginOnTemplate(templatePath,margin,marginColor):
     template = Image.open(templatePath)
     photoSize = template.size
-    print photoSize
+    #print photoSize
     marginPhotoSize= (photoSize[0] + margin * 2, photoSize[1] + margin * 2)
-    print marginPhotoSize
+    #print marginPhotoSize
     marginPhoto = Image.new(mode="RGB", size=marginPhotoSize, color=marginColor )
     marginPhoto.paste(template,(margin,margin))
     fileOutput = generateFilepathWithSuffix(templatePath,"-margin")

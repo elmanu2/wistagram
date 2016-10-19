@@ -77,8 +77,8 @@ class Photo(object):
             newTemplateResX = templateResX
             newTemplateResY = templateResY
 
-        print "NEW PHOTO RES : %s %s" %(newPhotoResX,newPhotoResY)
-        print "NEW TEMPLATE RES : %s %s" %(newTemplateResX,newTemplateResY)
+#       print "NEW PHOTO RES : %s %s" %(newPhotoResX,newPhotoResY)
+#       print "NEW TEMPLATE RES : %s %s" %(newTemplateResX,newTemplateResY)
 
         return ((newPhotoResX,newPhotoResY),(newTemplateResX,newTemplateResY))
 
