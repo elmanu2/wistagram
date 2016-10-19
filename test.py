@@ -70,9 +70,10 @@ def testAddTemplate():
     templatePath = templatePathOrigin
     printMargin = 30
     templateMargin = 60
+    marginColor = (84,158,167)
 
     #Add a margin on the template (add new pixel for printer margin)
-    templatePath = addMarginOnTemplate(templatePath,printMargin)
+    templatePath = addMarginOnTemplate(templatePath,printMargin,marginColor=marginColor)
 
     #Add a photo on the template
     photoPath = addPhotoOnTemplate(photopath,templatePath,margin=templateMargin)

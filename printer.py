@@ -68,6 +68,7 @@ def main():
     inputDir = "/Users/manu/Desktop/wistiti/"
     #The template
     templateFile = "./resources/test/template/COR-MARS16_elements-template-gimp.jpg"
+    marginColor = (84,158,167)
     printMargin = 30
     templateMargin = 60
     #The printer
@@ -78,7 +79,7 @@ def main():
 
 
     #Add a margin on the template (add new pixel for printer margin)
-    templateFile = addMarginOnTemplate(templateFile,printMargin)
+    templateFile = addMarginOnTemplate(templateFile,printMargin,marginColor=marginColor)
 
     subDirArray = getImmediateSubdirectories(inputDir)
 

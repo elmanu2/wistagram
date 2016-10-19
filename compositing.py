@@ -10,13 +10,13 @@ def generateFilepathWithSuffix(filepath,suffix):
     return filepathWithoutExtension + suffix + extension
 
 #Add a margin and save the file (margin is for left,right,bottom and top)
-def addMarginOnTemplate(templatePath,margin):
+def addMarginOnTemplate(templatePath,margin,marginColor):
     template = Image.open(templatePath)
     photoSize = template.size
     print photoSize
     marginPhotoSize= (photoSize[0] + margin * 2, photoSize[1] + margin * 2)
     print marginPhotoSize
-    marginPhoto = Image.new(mode="RGB", size=marginPhotoSize, color= (84,158,167))
+    marginPhoto = Image.new(mode="RGB", size=marginPhotoSize, color=marginColor )
     marginPhoto.paste(template,(margin,margin))
     fileOutput = generateFilepathWithSuffix(templatePath,"-margin")
     marginPhoto.save(fileOutput, 'jpeg')
