@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from PIL import Image
+from classes.printer import Printer
 from classes.photo import Photo
 from classes.printFormat import PrintFormat
 from conversion import *
@@ -99,12 +100,13 @@ def testAddTemplate():
     sizeOrigin = testTemplateOrigin.size
     sizeTemplateMargin = testTemplateMargin.size
     sizePhotoWithTemplate = photoWithTemplate.size
-    assert( sizeOrigin[0], 1121)
-    assert( sizeOrigin[1], 1771)
-    assert( sizeTemplateMargin[0], 1241)
-    assert( sizeTemplateMargin[1], 1831)
-    assert( sizePhotoWithTemplate[0], 1241)
-    assert( sizePhotoWithTemplate[1], 1831)
+    print sizeOrigin
+    assert( sizeOrigin[0] == 1181)
+    assert( sizeOrigin[1] == 1771)
+    assert( sizeTemplateMargin[0] == 1241)
+    assert( sizeTemplateMargin[1] == 1831)
+    assert( sizePhotoWithTemplate[0] == 1241)
+    assert( sizePhotoWithTemplate[1] == 1831)
 
     imTest = Image.open(fileOutput)
     (imageDpiX,imageDpiY) = imTest.info['dpi']
@@ -199,12 +201,19 @@ def unitTesting():
 
     print "TESTS ON PPI COMPUTATION PASSED SUCCESSFULLY"
 
+def testPrinter():
+    Printer()
+    assert(Printer.exists("Canon_CP900"))
+    assert(Printer.printerOnline("Canon_CP900"))
+
+
 def main():
     print "\n"
     unitTesting()
     testSelphyCP900()
     testSelphyCP900Template()
     testAddTemplate()
+    testPrinter()
     print "\n\n***TESTS PASSED SUCCESSFULLY***\n"
     return
 if __name__ == "__main__":

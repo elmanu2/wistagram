@@ -4,6 +4,8 @@ from PIL import Image
 import popen2
 import os
 import math
+import subprocess
+
 
 from classes.photo import Photo
 from classes.printFormat import PrintFormat
@@ -15,6 +17,8 @@ from compositing import *
 #Format Instagram : 612 x 612 / 1080 x 1080
 #PPI pour remplir 10cm -> 612 / 3,93701 -> 155
 #                      -> 1080 / 3,93701 -> 274
+
+
 
 
 def getImmediateSubdirectories(a_dir):
@@ -57,11 +61,26 @@ def listScreenShotFiles(inputDir):
 #print command : lpr -P Canon_CP900 -o media="Postcard(4x6in)" [filepath]
 #print center
 def printCommand(filename):
-    cmd = "lpr -P Canon_CP900 -o media=\"Postcard(4x6in)\" " + filename
+    cmdPrinter = "lpr -P Canon_CP900 -o media=\"Postcard(4x6in)\" "
+    cmd = cmdPrinter + filename + "r"
     print "Command : %s" %cmd
-    res = popen2.popen4(cmd)
+    #res = popen2.popen4(cmd)
+    try :
+        process = subprocess.check_output(["lpr","-P","Canon_CP900","-o","media=\"Postcard(4x6in)\"",filename])
+        print "Command OK"
+    except subprocess.CalledProcessError, e :
+        print "Command FAILED"
+        #print e
+
+    #print process.communicate()
+    #print process.communicate()
+    #res = subprocess.check_output(["lpr","-P","Canon_CP900","-o","media=\"Postcard(4x6in)\"",filename],stderr=subprocess.STDOUT,shell=True)
+    #print res
+    #subprocess.Popen(["lpr","-P","Canon_CP900","-o","media=\"Postcard(4x6in)\"",filename])
 
 def main():
+
+
 
     #CONFIGURATION
     #The root directory
