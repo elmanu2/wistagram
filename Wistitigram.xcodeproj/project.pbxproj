@@ -16,6 +16,7 @@
 		32CF24FD1DB684A500817C3C /* main.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = main.py; sourceTree = "<group>"; };
 		32CF24FE1DB7721800817C3C /* compositing.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = compositing.py; sourceTree = "<group>"; };
 		32CF24FF1DBA690800817C3C /* printer.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = printer.py; sourceTree = "<group>"; };
+		32CF25001DC4BBC500817C3C /* configuration.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = configuration.py; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -26,6 +27,7 @@
 				3244A3AB1DAF5912007CADA6 /* photo.py */,
 				3244A3AC1DAF5912007CADA6 /* printFormat.py */,
 				32CF24FF1DBA690800817C3C /* printer.py */,
+				32CF25001DC4BBC500817C3C /* configuration.py */,
 			);
 			path = classes;
 			sourceTree = "<group>";

@@ -86,8 +86,10 @@ def main():
     #The root directory
     inputDir = "/Users/manu/Desktop/wistiti/"
     #The template
-    templateFile = "./resources/test/template/COR-MARS16_elements-template-gimp.jpg"
-    marginColor = (84,158,167)
+    #templateFile = "./resources/test/template/COR-MARS16_elements-template-gimp.jpg"
+    templateFile = "./resources/test/template/COR-NOV16_elements-template-instagram_FLASH-gimp.jpg"
+    #marginColor = (84,158,167)
+    marginColor = (216,123,98)
     printMargin = 30
     templateMargin = 60
     #The printer
