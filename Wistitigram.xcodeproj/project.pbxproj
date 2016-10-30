@@ -18,6 +18,31 @@
 		32CF24FF1DBA690800817C3C /* printer.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = printer.py; sourceTree = "<group>"; };
 		32CF25001DC4BBC500817C3C /* configuration.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = configuration.py; sourceTree = "<group>"; };
 		32CF25011DC5FF8600817C3C /* printerlist.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = printerlist.py; sourceTree = "<group>"; };
+		32CF25041DC6045800817C3C /* COR-MARS16_elements-template.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "COR-MARS16_elements-template.jpg"; sourceTree = "<group>"; };
+		32CF25071DC6045800817C3C /* 1139147525899845285-CP900-print.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1139147525899845285-CP900-print.jpg"; sourceTree = "<group>"; };
+		32CF25081DC6045800817C3C /* 1139147525899845285-CP900-python.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1139147525899845285-CP900-python.jpg"; sourceTree = "<group>"; };
+		32CF25091DC6045800817C3C /* 1139147525899845285.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1139147525899845285.jpg; sourceTree = "<group>"; };
+		32CF250A1DC6045800817C3C /* 1194941102189608484-CP900-print.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1194941102189608484-CP900-print.jpg"; sourceTree = "<group>"; };
+		32CF250B1DC6045800817C3C /* 1194941102189608484-CP900-python.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1194941102189608484-CP900-python.jpg"; sourceTree = "<group>"; };
+		32CF250C1DC6045800817C3C /* 1194941102189608484.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1194941102189608484.jpg; sourceTree = "<group>"; };
+		32CF250D1DC6045800817C3C /* 1326184207731289979-CP900-print.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1326184207731289979-CP900-print.jpg"; sourceTree = "<group>"; };
+		32CF250E1DC6045800817C3C /* 1326184207731289979-CP900-python.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1326184207731289979-CP900-python.jpg"; sourceTree = "<group>"; };
+		32CF250F1DC6045800817C3C /* 1326184207731289979.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1326184207731289979.jpg; sourceTree = "<group>"; };
+		32CF25101DC6045800817C3C /* 712495213394164801-CP900-print.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "712495213394164801-CP900-print.jpg"; sourceTree = "<group>"; };
+		32CF25111DC6045800817C3C /* 712495213394164801-template-CP900-print.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "712495213394164801-template-CP900-print.jpg"; sourceTree = "<group>"; };
+		32CF25121DC6045800817C3C /* 712495213394164801-template.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "712495213394164801-template.jpg"; sourceTree = "<group>"; };
+		32CF25131DC6045800817C3C /* 712495213394164801.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 712495213394164801.jpg; sourceTree = "<group>"; };
+		32CF25151DC6045800817C3C /* 20161029_clutcho_selphy.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; path = 20161029_clutcho_selphy.cfg; sourceTree = "<group>"; };
+		32CF25171DC6045800817C3C /* 1313840674994551403-CP900-print.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1313840674994551403-CP900-print.jpg"; sourceTree = "<group>"; };
+		32CF25181DC6045800817C3C /* 1313840674994551403.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1313840674994551403.jpg; sourceTree = "<group>"; };
+		32CF251A1DC6045800817C3C /* COR-MARS16_elements-template-gimp-CP900-print.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "COR-MARS16_elements-template-gimp-CP900-print.jpg"; sourceTree = "<group>"; };
+		32CF251B1DC6045800817C3C /* COR-MARS16_elements-template-gimp-CP900-python.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "COR-MARS16_elements-template-gimp-CP900-python.jpg"; sourceTree = "<group>"; };
+		32CF251C1DC6045800817C3C /* COR-MARS16_elements-template-gimp-margin.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "COR-MARS16_elements-template-gimp-margin.jpg"; sourceTree = "<group>"; };
+		32CF251D1DC6045800817C3C /* COR-MARS16_elements-template-gimp.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "COR-MARS16_elements-template-gimp.jpg"; sourceTree = "<group>"; };
+		32CF251E1DC6045800817C3C /* COR-MARS16_elements-template.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "COR-MARS16_elements-template.jpg"; sourceTree = "<group>"; };
+		32CF251F1DC6045800817C3C /* COR-NOV16_elements-template-instagram_FLASH-gimp-margin.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "COR-NOV16_elements-template-instagram_FLASH-gimp-margin.jpg"; sourceTree = "<group>"; };
+		32CF25201DC6045800817C3C /* COR-NOV16_elements-template-instagram_FLASH-gimp.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "COR-NOV16_elements-template-instagram_FLASH-gimp.jpg"; sourceTree = "<group>"; };
+		32CF25211DC6045800817C3C /* COR-NOV16_elements-template-instagram_FLASH.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "COR-NOV16_elements-template-instagram_FLASH.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -36,6 +61,7 @@
 		32A3A3081DAD2BE6006790E9 = {
 			isa = PBXGroup;
 			children = (
+				32CF25021DC6045800817C3C /* resources */,
 				3244A3AA1DAF5912007CADA6 /* classes */,
 				3244A3AE1DAF599E007CADA6 /* __init__.py */,
 				32CF24FC1DB6656B00817C3C /* test.py */,
@@ -44,6 +70,86 @@
 				32CF24FE1DB7721800817C3C /* compositing.py */,
 				3244A3AF1DAF5A9A007CADA6 /* conversion.py */,
 			);
+			sourceTree = "<group>";
+		};
+		32CF25021DC6045800817C3C /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				32CF25031DC6045800817C3C /* template */,
+				32CF25051DC6045800817C3C /* test */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
+		32CF25031DC6045800817C3C /* template */ = {
+			isa = PBXGroup;
+			children = (
+				32CF25041DC6045800817C3C /* COR-MARS16_elements-template.jpg */,
+			);
+			path = template;
+			sourceTree = "<group>";
+		};
+		32CF25051DC6045800817C3C /* test */ = {
+			isa = PBXGroup;
+			children = (
+				32CF25061DC6045800817C3C /* bentalou */,
+				32CF25141DC6045800817C3C /* configurations */,
+				32CF25161DC6045800817C3C /* finhalmn */,
+				32CF25191DC6045800817C3C /* template */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
+		32CF25061DC6045800817C3C /* bentalou */ = {
+			isa = PBXGroup;
+			children = (
+				32CF25071DC6045800817C3C /* 1139147525899845285-CP900-print.jpg */,
+				32CF25081DC6045800817C3C /* 1139147525899845285-CP900-python.jpg */,
+				32CF25091DC6045800817C3C /* 1139147525899845285.jpg */,
+				32CF250A1DC6045800817C3C /* 1194941102189608484-CP900-print.jpg */,
+				32CF250B1DC6045800817C3C /* 1194941102189608484-CP900-python.jpg */,
+				32CF250C1DC6045800817C3C /* 1194941102189608484.jpg */,
+				32CF250D1DC6045800817C3C /* 1326184207731289979-CP900-print.jpg */,
+				32CF250E1DC6045800817C3C /* 1326184207731289979-CP900-python.jpg */,
+				32CF250F1DC6045800817C3C /* 1326184207731289979.jpg */,
+				32CF25101DC6045800817C3C /* 712495213394164801-CP900-print.jpg */,
+				32CF25111DC6045800817C3C /* 712495213394164801-template-CP900-print.jpg */,
+				32CF25121DC6045800817C3C /* 712495213394164801-template.jpg */,
+				32CF25131DC6045800817C3C /* 712495213394164801.jpg */,
+			);
+			path = bentalou;
+			sourceTree = "<group>";
+		};
+		32CF25141DC6045800817C3C /* configurations */ = {
+			isa = PBXGroup;
+			children = (
+				32CF25151DC6045800817C3C /* 20161029_clutcho_selphy.cfg */,
+			);
+			path = configurations;
+			sourceTree = "<group>";
+		};
+		32CF25161DC6045800817C3C /* finhalmn */ = {
+			isa = PBXGroup;
+			children = (
+				32CF25171DC6045800817C3C /* 1313840674994551403-CP900-print.jpg */,
+				32CF25181DC6045800817C3C /* 1313840674994551403.jpg */,
+			);
+			path = finhalmn;
+			sourceTree = "<group>";
+		};
+		32CF25191DC6045800817C3C /* template */ = {
+			isa = PBXGroup;
+			children = (
+				32CF251A1DC6045800817C3C /* COR-MARS16_elements-template-gimp-CP900-print.jpg */,
+				32CF251B1DC6045800817C3C /* COR-MARS16_elements-template-gimp-CP900-python.jpg */,
+				32CF251C1DC6045800817C3C /* COR-MARS16_elements-template-gimp-margin.jpg */,
+				32CF251D1DC6045800817C3C /* COR-MARS16_elements-template-gimp.jpg */,
+				32CF251E1DC6045800817C3C /* COR-MARS16_elements-template.jpg */,
+				32CF251F1DC6045800817C3C /* COR-NOV16_elements-template-instagram_FLASH-gimp-margin.jpg */,
+				32CF25201DC6045800817C3C /* COR-NOV16_elements-template-instagram_FLASH-gimp.jpg */,
+				32CF25211DC6045800817C3C /* COR-NOV16_elements-template-instagram_FLASH.jpg */,
+			);
+			path = template;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
