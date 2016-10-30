@@ -11,6 +11,7 @@ from classes.photo import Photo
 from classes.printFormat import PrintFormat
 from conversion import *
 from compositing import *
+from classes.configuration import Configuration
 
 #Selphy CP 910 : 10x15cm
 #                3,93701 x 5,90551 inches
@@ -85,23 +86,40 @@ def main():
     #CONFIGURATION
     #The root directory
     inputDir = "/Users/manu/Desktop/wistiti/"
-    #The template
+    #The configuration file directory
+    configDir = os.path.join(inputDir, "configurations")
+
+    #USE CONFIGURATION FILE
+    #Ask user for configuration
+    files = Configuration.listConfigurationFiles(configDir)
+    selection = Configuration.userSelection(files)
+    selectionFilepath = os.path.join(configDir,files[selection])
+    cfg = Configuration(selectionFilepath)
+
+    print cfg
+
     #templateFile = "./resources/test/template/COR-MARS16_elements-template-gimp.jpg"
-    templateFile = "./resources/test/template/COR-NOV16_elements-template-instagram_FLASH-gimp.jpg"
+    templateFile = cfg.getTemplateName()
     #marginColor = (84,158,167)
-    marginColor = (216,123,98)
-    printMargin = 30
-    templateMargin = 60
+    marginColor = cfg.getTemplateColor()
+    #TODO = Manage difference between width and height margins
+    templateMargin = cfg.getPrinterMarginTemplate()[0]
+    photoMargin = cfg.getPrinterMarginPhoto()[0]
     #The printer
-    #Create a post card print format (Selphy CP900)
-    #paper : 100x148mm
-    printFormat = PrintFormat.SelphyCP900(dpiStretch=True)
-    printFormat.setPrinterMargin(-1,-1,"mm")
+    if(cfg.getPrinterName() == "SelphyCP900"):
+        printFormat = PrintFormat.SelphyCP900(dpiStretch=cfg.getPrinterDpiStretch())
+    else:
+        print "No printer with this name, quit"
+        return
+    printFormat.setPrinterMargin(cfg.getPrinterMargin()[0],
+                                 cfg.getPrinterMargin()[1],
+                                 cfg.getPrinterMarginDim)
     print printFormat
+    #END OF USE CONFIGURATION FILE
 
 
     #Add a margin on the template (add new pixel for printer margin)
-    templateFile = addMarginOnTemplate(templateFile,printMargin,marginColor=marginColor)
+    templateFile = addMarginOnTemplate(templateFile,templateMargin,marginColor=marginColor)
 
     #Get the subdirectories of inputdir
     subDirArray = getImmediateSubdirectories(inputDir)
@@ -131,7 +149,7 @@ def main():
         #print fileOutput
 
         #Add a photo on the template
-        photoPath = addPhotoOnTemplate(filepath,templateFile,margin=templateMargin)
+        photoPath = addPhotoOnTemplate(filepath,templateFile,margin=photoMargin)
         im = Image.open(photoPath)
 
         exif_data = im._getexif()

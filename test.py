@@ -4,6 +4,7 @@ from PIL import Image
 from classes.printer import Printer
 from classes.photo import Photo
 from classes.printFormat import PrintFormat
+from classes.configuration import Configuration
 from conversion import *
 from printer import *
 from compositing import *
@@ -204,7 +205,45 @@ def unitTesting():
 def testPrinter():
     Printer()
     assert(Printer.exists("Canon_CP900"))
-    assert(Printer.printerOnline("Canon_CP900"))
+    print Printer.osPrinter()
+    #assert(Printer.printerOnline("Canon_CP900"))
+
+def testConfiguration():
+    print "\n****TEST CONFIGURATION****"
+    rootDirectory = "./resources/test/configurations"
+    files = Configuration.listConfigurationFiles(rootDirectory)
+    selection = Configuration.userSelection(files)
+    selectionFilepath = os.path.join(rootDirectory,files[selection])
+
+    configuration = Configuration(selectionFilepath)
+    #Template configuration
+    templateName = configuration.getTemplateName()
+    templateColor = configuration.getTemplateColor()
+    #Printer configuration
+    printerName = configuration.getPrinterName()
+    printerDpiStretch = configuration.getPrinterDpiStretch()
+    printerMargin = configuration.getPrinterMargin()
+    printerMarginDimension = configuration.getPrinterMarginDim()
+    printerMarginTemplate = configuration.getPrinterMarginTemplate()
+    printerMarginPhoto = configuration.getPrinterMarginPhoto()
+
+    assert(len(files) > 0)
+
+    #Test Printer configuration
+    assert(printerName == "SelphyCP900")
+
+    #Test Format configuration
+    assert(templateName == "./resources/test/template/COR-NOV16_elements-template-instagram_FLASH-gimp.jpg")
+    assert(templateColor == (216,123,98))
+
+
+    assert(printerDpiStretch)
+    assert(printerMargin == (-1,-1))
+    assert(printerMarginDimension == "mm")
+    assert(printerMarginTemplate == (30,30))
+    assert(printerMarginPhoto == (60,60))
+    print configuration
+    print "TESTS ON CONFIGURATION PASSED SUCCESSFULLY"
 
 
 def main():
@@ -214,6 +253,7 @@ def main():
     testSelphyCP900Template()
     testAddTemplate()
     testPrinter()
+    testConfiguration()
     print "\n\n***TESTS PASSED SUCCESSFULLY***\n"
     return
 if __name__ == "__main__":

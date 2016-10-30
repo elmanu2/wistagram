@@ -34,6 +34,15 @@ class Printer(object):
         return None
 
     @staticmethod
+    def osPrinter():
+        printers = Printer.getPrinterDict()
+        printernames = []
+        for key,value in printers.iteritems():
+            printernames += [key]
+        return printernames
+
+
+    @staticmethod
     def printerOnline(printername):
         info = Printer.information(printername,"printer-state-reasons")
         #[u'none'] or [u'offline-report']

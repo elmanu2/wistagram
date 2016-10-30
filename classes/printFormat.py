@@ -29,6 +29,14 @@ class PrintFormat(object):
         printer.name = "SelphyCP900"
         return printer
 
+    #The DNP printer
+    @staticmethod
+    def DNPDS620(dpiStretch=False):
+        printer = PrintFormat(100,152,"mm")
+        printer.dpiStretch = dpiStretch
+        printer.name = "DNPDS620"
+        return printer
+
     def setDpiStretch(self,state):
         self.dpiStretch = state
 
@@ -56,4 +64,4 @@ class PrintFormat(object):
         return "PrintFormat()"
 
     def __str__(self):
-        return "[name/width/height/marginWidth/marginHeight] : [%s/%smm/%smm/%s/%s]" %(self.name,self.width,self.height, self.marginWidth,self.marginHeight)
+        return "[name/width/height/marginWidth/marginHeight/DpiStretch] : [%s/%smm/%smm/%s/%s/%s]" %(self.name,self.width,self.height, self.marginWidth,self.marginHeight,self.dpiStretch)

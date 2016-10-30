@@ -86,6 +86,7 @@ class Configuration(object):
     @staticmethod
     def userSelection(fileArray):
         selection = -1
+        print "Select the configuration file ? (enter a number) :"
         while ( (selection < 0) or (selection >= len(fileArray))):
             for idx, val in enumerate(fileArray):
                 print"[%d -> %s]" %(idx,val)
@@ -98,7 +99,28 @@ class Configuration(object):
         return "Configuration()"
 
     def __str__(self):
-        return "[resX/resY/Width/Height/PPIX,PPIY] : [%s/%s/%smm/%smm/%s/%s]" %(self.resX,self.resY,self.width, self.height,self.ppiX,self.ppiY)
+        printValue = "[filename -> %s]\n" %(self.filename)
+        printValue += "[template name -> %s]\n" %(self.getTemplateName())
+        printValue += "[template color -> (%s,%s,%s)]\n" %(self.getTemplateColor())
+        printValue += "[printer name -> %s]\n" %(self.getPrinterName())
+        printValue += "[printer Dpi Stretch -> %s]\n" %(self.getPrinterDpiStretch())
+        printValue += "[printer margin -> (%sx%s)]\n" %(self.getPrinterMargin())
+        printValue += "[printer margin dimension -> %s]\n" %(self.getPrinterMarginDim())
+        printValue += "[printer margin template -> (%sx%s)pixels]\n" %(self.getPrinterMarginTemplate())
+        printValue += "[printer margin photo -> (%s,%s)pixels]\n" %(self.getPrinterMarginPhoto())
+        return printValue
+
+#print files
+#    print selection
+#    print selectionFilepath
+#    print templateName
+#    print templateColor
+#    print printerName
+#    print printerDpiStretch
+#    print printerMargin
+#    print printerMarginDimension
+#    print printerMarginPhoto
+#        return "[resX/resY/Width/Height/PPIX,PPIY] : [%s/%s/%smm/%smm/%s/%s]" %(self.resX,self.resY,self.width, self.height,self.ppiX,self.ppiY)
 
 def unitTest():
     rootDirectory = "/Users/manu/Desktop/wistiti/configurations"
@@ -136,16 +158,6 @@ def unitTest():
 
     
 
-    print files
-    print selection
-    print selectionFilepath
-    print templateName
-    print templateColor
-    print printerName
-    print printerDpiStretch
-    print printerMargin
-    print printerMarginDimension
-    print printerMarginPhoto
 
 
 def main():
