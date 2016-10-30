@@ -106,8 +106,11 @@ def main():
     #The printer
     if(cfg.getPrinterName() == "SelphyCP900"):
         printFormat = PrintFormat.SelphyCP900(dpiStretch=cfg.getPrinterDpiStretch())
-    else:
-        print "No printer with this name, quit"
+    elif(cfg.getPrinterName() == "DNPDS620"):
+        print "No printer command with this printer %s, quit" %(cfg.getPrinterName())
+        return
+    else :
+        print "No printer with this name %s, quit" %(cfg.getPrinterName())
         return
     printFormat.setPrinterMargin(cfg.getPrinterMargin()[0],
                                  cfg.getPrinterMargin()[1],
