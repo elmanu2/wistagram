@@ -220,7 +220,9 @@ def testConfiguration():
     templateName = configuration.getTemplateName()
     templateColor = configuration.getTemplateColor()
     #Printer configuration
-    printerName = configuration.getPrinterName()
+    printerOsName = configuration.getPrinterOsName()
+    printerOsFormat = configuration.getPrinterOsFormat()
+
     printerDpiStretch = configuration.getPrinterDpiStretch()
     printerMargin = configuration.getPrinterMargin()
     printerMarginDimension = configuration.getPrinterMarginDim()
@@ -230,7 +232,8 @@ def testConfiguration():
     assert(len(files) > 0)
 
     #Test Printer configuration
-    assert(printerName == "SelphyCP900")
+    assert(printerOsName == "Canon_CP900")
+    assert(printerOsFormat == "\"Postcard(4x6in)\"")
 
     #Test Format configuration
     assert(templateName == "./resources/test/template/COR-NOV16_elements-template-instagram_FLASH-gimp.jpg")

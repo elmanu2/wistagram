@@ -28,36 +28,41 @@ class Configuration(object):
 
     #Printer OS name
     #return : String
-    def getPrinterName(self):
-        return self.rawConfiguration.get('printer','name')
+    def getPrinterOsName(self):
+        return self.rawConfiguration.get('printer','osname')
+
+    #Printer OS name
+    #return : String
+    def getPrinterOsFormat(self):
+        return self.rawConfiguration.get('printer','osformat')
 
     #Use Dpi stretch
     #return : BOOL
     def getPrinterDpiStretch(self):
-        rawDpiStretch = self.rawConfiguration.get('printer','dpiStretch')
+        rawDpiStretch = self.rawConfiguration.get('printing','dpiStretch')
         return Configuration.str2Bool(rawDpiStretch)
 
     #Printer margin
     #return : (Int,Int)
     def getPrinterMargin(self):
-        rawFormat = self.rawConfiguration.get('printer','margin')
+        rawFormat = self.rawConfiguration.get('printing','margin')
         return Configuration.splitFormat(rawFormat)
 
     #Printer margin dimension : "mm" or "inch"
     #return : String
     def getPrinterMarginDim(self):
-        return self.rawConfiguration.get('printer','marginDim')
+        return self.rawConfiguration.get('printing','marginDim')
 
     #Printer margin photo in pixels
     #return : (Int,Int)
     def getPrinterMarginPhoto(self):
-        rawFormat = self.rawConfiguration.get('printer','marginphoto')
+        rawFormat = self.rawConfiguration.get('printing','marginphoto')
         return Configuration.splitFormat(rawFormat)
 
     #Printer margin template in pixels
     #return : (Int,Int)
     def getPrinterMarginTemplate(self):
-        rawFormat = self.rawConfiguration.get('printer','margintemplate')
+        rawFormat = self.rawConfiguration.get('printing','margintemplate')
         return Configuration.splitFormat(rawFormat)
 
     #Convert a string into a boolean value
@@ -124,7 +129,8 @@ class Configuration(object):
         printValue = "[filename -> %s]\n" %(self.filename)
         printValue += "[template name -> %s]\n" %(self.getTemplateName())
         printValue += "[template color -> (%s,%s,%s)]\n" %(self.getTemplateColor())
-        printValue += "[printer name -> %s]\n" %(self.getPrinterName())
+        printValue += "[printer os name -> %s]\n" %(self.getPrinterOsName())
+        printValue += "[printer os format -> %s]\n" %(self.getPrinterOsFormat())
         printValue += "[printer Dpi Stretch -> %s]\n" %(self.getPrinterDpiStretch())
         printValue += "[printer margin -> (%sx%s)]\n" %(self.getPrinterMargin())
         printValue += "[printer margin dimension -> %s]\n" %(self.getPrinterMarginDim())
@@ -132,44 +138,9 @@ class Configuration(object):
         printValue += "[printer margin photo -> (%s,%s)pixels]\n" %(self.getPrinterMarginPhoto())
         return printValue
 
-
-def unitTest():
-    rootDirectory = "/Users/manu/Desktop/wistiti/configurations"
-    files = Configuration.listConfigurationFiles(rootDirectory)
-    selection = Configuration.userSelection(files)
-    selectionFilepath = os.path.join(rootDirectory,files[selection])
-
-    configuration = Configuration(selectionFilepath)
-    #Template configuration
-    templateName = configuration.getTemplateName()
-    templateColor = configuration.getTemplateColor()
-    #Printer configuration
-    printerName = configuration.getPrinterName()
-    printerDpiStretch = configuration.getPrinterDpiStretch()
-    printerMargin = configuration.getPrinterMargin()
-    printerMarginDimension = configuration.getPrinterMarginDim()
-    printerMarginTemplate = configuration.getPrinterMarginTemplate()
-    printerMarginPhoto = configuration.getPrinterMarginPhoto()
-
-    assert(len(files) > 0)
-
-    #Test Printer configuration
-    assert(printerName == "SelphyCP900")
-
-    #Test Format configuration
-    assert(templateName == "./resources/test/template/COR-NOV16_elements-template-instagram_FLASH-gimp.jpg")
-    assert(templateColor == (216,123,98))
-
-    
-    assert(printerDpiStretch)
-    assert(printerMargin == (-1,-1))
-    assert(printerMarginDimension == "mm")
-    assert(printerMarginTemplate == (30,30))
-    assert(printerMarginPhoto == (60,60))
-
-
 def main():
-    unitTest()
+    #do nothing
+    a = 10
 
 if __name__ == "__main__":
     main()

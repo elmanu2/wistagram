@@ -4,14 +4,16 @@ from PIL import Image
 import popen2
 import os
 import math
-import subprocess
+
 
 
 from classes.photo import Photo
 from classes.printFormat import PrintFormat
+from classes.configuration import Configuration
+from classes.printer import Printer
 from conversion import *
 from compositing import *
-from classes.configuration import Configuration
+
 
 #Selphy CP 910 : 10x15cm
 #                3,93701 x 5,90551 inches
@@ -56,28 +58,25 @@ def listScreenShotFiles(inputDir):
     return filelist
 
 
-
-
-
-#print command : lpr -P Canon_CP900 -o media="Postcard(4x6in)" [filepath]
-#print center
-def printCommand(filename):
-    cmdPrinter = "lpr -P Canon_CP900 -o media=\"Postcard(4x6in)\" "
-    cmd = cmdPrinter + filename + "r"
-    print "Command : %s" %cmd
-    #res = popen2.popen4(cmd)
-    try :
-        process = subprocess.check_output(["lpr","-P","Canon_CP900","-o","media=\"Postcard(4x6in)\"",filename])
-        print "Command OK"
-    except subprocess.CalledProcessError, e :
-        print "Command FAILED"
-        #print e
-
-    #print process.communicate()
-    #print process.communicate()
-    #res = subprocess.check_output(["lpr","-P","Canon_CP900","-o","media=\"Postcard(4x6in)\"",filename],stderr=subprocess.STDOUT,shell=True)
-    #print res
-    #subprocess.Popen(["lpr","-P","Canon_CP900","-o","media=\"Postcard(4x6in)\"",filename])
+##print command : lpr -P Canon_CP900 -o media="Postcard(4x6in)" [filepath]
+##print center
+#def printCommand(filename):
+#    cmdPrinter = "lpr -P Canon_CP900 -o media=\"Postcard(4x6in)\" "
+#    cmd = cmdPrinter + filename + "r"
+#    print "Command : %s" %cmd
+#    #res = popen2.popen4(cmd)
+#    try :
+#        process = subprocess.check_output(["lpr","-P","Canon_CP900","-o","media=\"Postcard(4x6in)\"",filename])
+#        print "Command OK"
+#    except subprocess.CalledProcessError, e :
+#        print "Command FAILED"
+#        #print e
+#
+#    #print process.communicate()
+#    #print process.communicate()
+#    #res = subprocess.check_output(["lpr","-P","Canon_CP900","-o","media=\"Postcard(4x6in)\"",filename],stderr=subprocess.STDOUT,shell=True)
+#    #print res
+#    #subprocess.Popen(["lpr","-P","Canon_CP900","-o","media=\"Postcard(4x6in)\"",filename])
 
 def main():
 
@@ -104,13 +103,13 @@ def main():
     templateMargin = cfg.getPrinterMarginTemplate()[0]
     photoMargin = cfg.getPrinterMarginPhoto()[0]
     #The printer
-    if(cfg.getPrinterName() == "SelphyCP900"):
+    if(cfg.getPrinterOsName() == "Canon_CP900"):
         printFormat = PrintFormat.SelphyCP900(dpiStretch=cfg.getPrinterDpiStretch())
-    elif(cfg.getPrinterName() == "DNPDS620"):
-        print "No printer command with this printer %s, quit" %(cfg.getPrinterName())
+    elif(cfg.getPrinterOsName() == "DNPDS620"):
+        print "No osname for this printer %s, quit" %(cfg.getPrinterOsName())
         return
     else :
-        print "No printer with this name %s, quit" %(cfg.getPrinterName())
+        print "No printer with this name %s, quit" %(cfg.getPrinterOsName())
         return
     printFormat.setPrinterMargin(cfg.getPrinterMargin()[0],
                                  cfg.getPrinterMargin()[1],
@@ -139,6 +138,10 @@ def main():
 
     userInput = ""
     index = 0
+    if(len(files) == 0):
+        print "No compatible file in this directory, quit..."
+        return
+
     while(userInput != "q"):
         #Open the picture image
         filepath = os.path.join(inputDir,files[index])
@@ -170,7 +173,10 @@ def main():
         #print "Resultat %s" % userInput
         if userInput == "p":
             print im2.info
-            printCommand(fileOutput)
+            printCommand = Printer.computePrinterCommand(fileOutput,
+                                                  cfg.getPrinterOsName(),
+                                                  cfg.getPrinterOsFormat())
+            Printer.sendPrinterJob(printCommand)
             print "INFO : YOU CAN PRINT THE SAME IMAGE"
         elif userInput == "n":
             print "Next picture"

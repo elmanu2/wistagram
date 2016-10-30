@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import cups
+import subprocess
 
 #OS printers operations
 class Printer(object):
@@ -64,3 +65,28 @@ class Printer(object):
             return False
         else :
             print printername + " unknown state"
+
+    #Compute printer command
+    #lpr -P Canon_CP900 -o media="Postcard(4x6in)" [filepath]
+    #return : [String]
+    @staticmethod
+    def computePrinterCommand(filepath,
+                              printername="Canon_CP900",
+                              printerFormat="media=\"Postcard(4x6in)\""):
+
+        return ["lpr","-P",printername,"-o","media="+printerFormat,filepath]
+
+    #Send printer job
+    #printer command :[lpr,-P,Canon_CP900,-o,media="Postcard(4x6in)",[filepath]]
+    #return : Void
+    @staticmethod
+    def sendPrinterJob(printerCommand):
+        try :
+            print ("Send job %s" %printerCommand)
+            process = subprocess.check_output(printerCommand)
+            print "Command OK"
+        except subprocess.CalledProcessError, e :
+            print "Command FAILED"
+            #print e
+
+

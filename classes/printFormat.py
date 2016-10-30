@@ -18,7 +18,7 @@ class PrintFormat(object):
         self.fullPrint = False
         self.marginWidth = 0
         self.marginHeight = 0
-        self.name = "NoPrinterName"
+        self.osname = "NoPrinterName"
         print "create print format %smm %smm" %(self.width,self.height)
 
     #The Selphy CP900 printer
@@ -26,7 +26,7 @@ class PrintFormat(object):
     def SelphyCP900(dpiStretch=False):
         printer = PrintFormat(100,148,"mm")
         printer.dpiStretch = dpiStretch
-        printer.name = "SelphyCP900"
+        printer.osname = "Canon_CP900"
         return printer
 
     #The DNP printer
@@ -34,7 +34,7 @@ class PrintFormat(object):
     def DNPDS620(dpiStretch=False):
         printer = PrintFormat(100,152,"mm")
         printer.dpiStretch = dpiStretch
-        printer.name = "DNPDS620"
+        printer.osname = "DNPDS620"
         return printer
 
     def setDpiStretch(self,state):
@@ -64,4 +64,4 @@ class PrintFormat(object):
         return "PrintFormat()"
 
     def __str__(self):
-        return "[name/width/height/marginWidth/marginHeight/DpiStretch] : [%s/%smm/%smm/%s/%s/%s]" %(self.name,self.width,self.height, self.marginWidth,self.marginHeight,self.dpiStretch)
+        return "[osname/width/height/marginWidth/marginHeight/DpiStretch] : [%s/%smm/%smm/%s/%s/%s]" %(self.osname,self.width,self.height, self.marginWidth,self.marginHeight,self.dpiStretch)
