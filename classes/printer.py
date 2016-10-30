@@ -2,17 +2,22 @@
 # -*- coding: utf-8 -*-
 import cups
 
+#OS printers operations
 class Printer(object):
     def __init__(self):
         con = cups.Connection()
         self.printers = con.getPrinters()
         print self.printers
 
+    #Get the raw input dictionnary
+    #return : Dictionary
     @staticmethod
     def getPrinterDict():
         con = cups.Connection()
         return con.getPrinters()
 
+    #Is the printer registered in the OS?
+    #return : BOOL
     @staticmethod
     def exists(printername):
         printers = Printer.getPrinterDict()
@@ -22,6 +27,8 @@ class Printer(object):
                 exists = True
         return exists
 
+    #Get an information about a specific OS printer
+    #return : String
     @staticmethod
     def information(printername,inputKey):
         printers = Printer.getPrinterDict()
@@ -33,6 +40,8 @@ class Printer(object):
                         return valueInfo
         return None
 
+    #List of the printers available in the Operating System
+    #return : [String]
     @staticmethod
     def osPrinter():
         printers = Printer.getPrinterDict()
@@ -41,7 +50,8 @@ class Printer(object):
             printernames += [key]
         return printernames
 
-
+    #Detect if the printer is online/offline
+    #return : BOOL
     @staticmethod
     def printerOnline(printername):
         info = Printer.information(printername,"printer-state-reasons")

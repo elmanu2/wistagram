@@ -14,38 +14,54 @@ class Configuration(object):
         config.read(filename)
         self.rawConfiguration = config
 
+    #Template filepath
+    #return : String
     def getTemplateName(self):
         return self.rawConfiguration.get('template', 'templateFilepath')
 
+    #Template margin color
+    #return : (Int,Int,Int)
     def getTemplateColor(self):
         rawColor = self.rawConfiguration.get('template', 'color')
         rgb = rawColor.split(',')
         return (int(rgb[0]), int(rgb[1]), int(rgb[2]))
 
+    #Printer OS name
+    #return : String
     def getPrinterName(self):
         return self.rawConfiguration.get('printer','name')
 
+    #Use Dpi stretch
+    #return : BOOL
     def getPrinterDpiStretch(self):
         rawDpiStretch = self.rawConfiguration.get('printer','dpiStretch')
         return Configuration.str2Bool(rawDpiStretch)
 
+    #Printer margin
+    #return : (Int,Int)
     def getPrinterMargin(self):
         rawFormat = self.rawConfiguration.get('printer','margin')
         return Configuration.splitFormat(rawFormat)
 
+    #Printer margin dimension : "mm" or "inch"
+    #return : String
     def getPrinterMarginDim(self):
         return self.rawConfiguration.get('printer','marginDim')
 
+    #Printer margin photo in pixels
+    #return : (Int,Int)
     def getPrinterMarginPhoto(self):
         rawFormat = self.rawConfiguration.get('printer','marginphoto')
         return Configuration.splitFormat(rawFormat)
 
+    #Printer margin template in pixels
+    #return : (Int,Int)
     def getPrinterMarginTemplate(self):
         rawFormat = self.rawConfiguration.get('printer','margintemplate')
         return Configuration.splitFormat(rawFormat)
 
-
-
+    #Convert a string into a boolean value
+    #return : BOOL
     @staticmethod
     def str2Bool(text):
         if text == "True":
@@ -61,18 +77,22 @@ class Configuration(object):
         else:
             return False
 
-
+    #Convert a string into a 3-uplet for colors
+    #return : (Int,Int,Int)
     @staticmethod
     def splitColor(text):
         rgb = text.split(',')
         return (int(rgb[0]), int(rgb[1]), int(rgb[2]))
 
+    #Convert a string into a 2-uplet for (width,height)
+    #return : (Int,Int)
     @staticmethod
     def splitFormat(text):
         widthHeight = text.split('x')
         return (int(widthHeight[0]),int(widthHeight[1]))
 
-
+    #List the *.cfg file in a directory
+    #return : [String]
     @staticmethod
     def listConfigurationFiles(inputDir):
         filelist=os.listdir(inputDir)
@@ -83,6 +103,8 @@ class Configuration(object):
         #print(filelist)
         return filelist
 
+    #User index selection in an array
+    #return : Int
     @staticmethod
     def userSelection(fileArray):
         selection = -1
@@ -110,17 +132,6 @@ class Configuration(object):
         printValue += "[printer margin photo -> (%s,%s)pixels]\n" %(self.getPrinterMarginPhoto())
         return printValue
 
-#print files
-#    print selection
-#    print selectionFilepath
-#    print templateName
-#    print templateColor
-#    print printerName
-#    print printerDpiStretch
-#    print printerMargin
-#    print printerMarginDimension
-#    print printerMarginPhoto
-#        return "[resX/resY/Width/Height/PPIX,PPIY] : [%s/%s/%smm/%smm/%s/%s]" %(self.resX,self.resY,self.width, self.height,self.ppiX,self.ppiY)
 
 def unitTest():
     rootDirectory = "/Users/manu/Desktop/wistiti/configurations"
@@ -155,9 +166,6 @@ def unitTest():
     assert(printerMarginDimension == "mm")
     assert(printerMarginTemplate == (30,30))
     assert(printerMarginPhoto == (60,60))
-
-    
-
 
 
 def main():

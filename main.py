@@ -82,8 +82,6 @@ def printCommand(filename):
 def main():
 
 
-
-    #CONFIGURATION
     #The root directory
     inputDir = "/Users/manu/Desktop/wistiti/"
     #The configuration file directory
@@ -121,10 +119,10 @@ def main():
     #Add a margin on the template (add new pixel for printer margin)
     templateFile = addMarginOnTemplate(templateFile,templateMargin,marginColor=marginColor)
 
-    #Get the subdirectories of inputdir
+    #Get the subdirectories that include instagram pictures
     subDirArray = getImmediateSubdirectories(inputDir)
 
-    #User choose the subdirectory
+    #User chooses the subdirectory
     userIndexSelection = userSelectionInArray(subDirArray)
     inputDir = os.path.join(inputDir,subDirArray[userIndexSelection])
     #Get the images list (jpg)
@@ -152,7 +150,7 @@ def main():
         photoPath = addPhotoOnTemplate(filepath,templateFile,margin=photoMargin)
         im = Image.open(photoPath)
 
-        exif_data = im._getexif()
+        #exif_data = im._getexif()
         #print im.info
         #print exif_data
         photo = Photo(im.size[0],im.size[1])
@@ -168,11 +166,9 @@ def main():
         userInput = raw_input("Print? print/next/display/quit [p/n/d/q]")
         #print "Resultat %s" % userInput
         if userInput == "p":
-
-
             print im2.info
             printCommand(fileOutput)
-            print "WARNING : YOU CAN PRINT THE SAME IMAGE"
+            print "INFO : YOU CAN PRINT THE SAME IMAGE"
         elif userInput == "n":
             print "Next picture"
             index += 1
