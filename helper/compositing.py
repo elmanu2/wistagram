@@ -4,8 +4,10 @@ import os
 from PIL import Image
 from classes.photo import Photo
 
-## @package func
-#  Module docs
+##
+# @file compositing.py
+# Compositing
+#
 
 ## "toto.jpg" + "-suffix" -> "toto-suffix.jpg"
 #@return String

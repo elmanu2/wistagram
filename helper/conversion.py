@@ -5,8 +5,11 @@ import popen2
 import os
 import math
 
-## @package func
-#  Module docs
+##
+# @file conversion.py
+# Conversion operation
+#
+
 
 ##Inch to millimeter
 #@return float

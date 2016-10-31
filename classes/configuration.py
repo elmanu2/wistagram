@@ -6,6 +6,11 @@ import ConfigParser
 import io
 import os
 
+##
+# @file configuration.py
+# Configuration
+#
+
 ## Configuration
 #
 #

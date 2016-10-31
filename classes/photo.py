@@ -7,6 +7,10 @@ import math
 
 from helper.conversion import *
 
+##
+# @file photo.py
+# Photo
+#
 
 ##Class to compute PPI(or DPI)
 #
