@@ -4,12 +4,17 @@ import os
 from PIL import Image
 from classes.photo import Photo
 
-#"toto.jpg" + "-suffix" -> "toto-suffix.jpg"
+## @package func
+#  Module docs
+
+## "toto.jpg" + "-suffix" -> "toto-suffix.jpg"
+#@return String
 def generateFilepathWithSuffix(filepath,suffix):
     (filepathWithoutExtension,extension) = os.path.splitext(filepath)
     return filepathWithoutExtension + suffix + extension
 
-#Add a margin and save the file (margin is for left,right,bottom and top)
+##Add a margin and save the file (margin is for left,right,bottom and top)
+#@return String
 def addMarginOnTemplate(templatePath,margin,marginColor):
     template = Image.open(templatePath)
     photoSize = template.size
@@ -22,8 +27,9 @@ def addMarginOnTemplate(templatePath,margin,marginColor):
     marginPhoto.save(fileOutput, 'jpeg')
     return fileOutput
 
-#Add a photo on the template
+##Add a photo on the template
 #Resize the photo if necessary, or resize the template if necessary
+#@return String
 def addPhotoOnTemplate(photoPath,templatePath,margin):
     template = Image.open(templatePath)
     image = Image.open(photoPath)

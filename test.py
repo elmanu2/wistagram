@@ -5,9 +5,8 @@ from classes.printer import Printer
 from classes.photo import Photo
 from classes.printFormat import PrintFormat
 from classes.configuration import Configuration
-from conversion import *
-from printer import *
-from compositing import *
+from helper.conversion import *
+from helper.compositing import *
 
 def testEqualWithAccuracy(float1,float2,precision):
     if ( math.fabs(float1 - float2) < precision):

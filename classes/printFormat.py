@@ -5,9 +5,33 @@ import popen2
 import os
 import math
 
-from conversion import *
+from helper.conversion import *
+
 
 class PrintFormat(object):
+
+    ##@var width
+    #Width
+
+    ##@var height
+    #Height
+
+    ##@var fullPrint
+    #Fullprint or not
+
+    ##@var marginWidth
+    #Margin width
+
+    ##@var marginHeight
+    #Margin height
+
+    ##@var osname
+    #OS name
+
+    ##@var dpiStretch
+    #dpi stretch or not
+
+    ##Constructor
     def __init__(self,width,height,dimension="mm"):
         if (dimension=="in"):
             self.width = inch2mm(width)
@@ -21,7 +45,8 @@ class PrintFormat(object):
         self.osname = "NoPrinterName"
         print "create print format %smm %smm" %(self.width,self.height)
 
-    #The Selphy CP900 printer
+    ##The Selphy CP900 printer
+    #@return : PrintFormat
     @staticmethod
     def SelphyCP900(dpiStretch=False):
         printer = PrintFormat(100,148,"mm")
@@ -29,7 +54,8 @@ class PrintFormat(object):
         printer.osname = "Canon_CP900"
         return printer
 
-    #The DNP printer
+    ##The DNP printer
+    #@return : PrintFormat
     @staticmethod
     def DNPDS620(dpiStretch=False):
         printer = PrintFormat(100,152,"mm")
@@ -37,17 +63,24 @@ class PrintFormat(object):
         printer.osname = "DNPDS620"
         return printer
 
+    ##set stretch horizontal or vertical based on ppi/ppmmm
+    #@return : void
     def setDpiStretch(self,state):
         self.dpiStretch = state
 
+    ##print format ratio
+    #@return : float
     def ratio(self):
         return self.width / self.height
 
+    ##printable format ratio
+    #@return : float
     def printableRatio(self):
         (printableAreaWidth,printableAreaHeight) = self.getPrintableArea()
         return printableAreaWidth / printableAreaHeight
 
-    #Global margin, each is divided by 2 on left,right,top and bottom
+    ##Global margin, each is divided by 2 on left,right,top and bottom
+    #@return : void
     def setPrinterMargin(self,marginWidth,marginHeight,dimension="mm"):
         if (dimension=="in"):
             self.marginWidth = inch2mm(marginWidth)
@@ -56,12 +89,15 @@ class PrintFormat(object):
             self.marginWidth = marginWidth
             self.marginHeight = marginHeight
 
-    #Result : Area (width,height) in millimeters
+    ##Area in millimeters
+    #@return :  (width,height)
     def getPrintableArea(self):
         return (self.width - self.marginWidth,self.height - self.marginHeight)
 
+    ##Print function
     def __repr__(self):
         return "PrintFormat()"
 
+    ##Print function
     def __str__(self):
         return "[osname/width/height/marginWidth/marginHeight/DpiStretch] : [%s/%smm/%smm/%s/%s/%s]" %(self.osname,self.width,self.height, self.marginWidth,self.marginHeight,self.dpiStretch)

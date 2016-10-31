@@ -11,10 +11,8 @@
 		3244A3AC1DAF5912007CADA6 /* printFormat.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = printFormat.py; sourceTree = "<group>"; };
 		3244A3AD1DAF5999007CADA6 /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
 		3244A3AE1DAF599E007CADA6 /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
-		3244A3AF1DAF5A9A007CADA6 /* conversion.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = conversion.py; sourceTree = "<group>"; };
 		32CF24FC1DB6656B00817C3C /* test.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = test.py; sourceTree = "<group>"; };
 		32CF24FD1DB684A500817C3C /* main.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = main.py; sourceTree = "<group>"; };
-		32CF24FE1DB7721800817C3C /* compositing.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = compositing.py; sourceTree = "<group>"; };
 		32CF24FF1DBA690800817C3C /* printer.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = printer.py; sourceTree = "<group>"; };
 		32CF25001DC4BBC500817C3C /* configuration.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = configuration.py; sourceTree = "<group>"; };
 		32CF25011DC5FF8600817C3C /* printerlist.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = printerlist.py; sourceTree = "<group>"; };
@@ -43,6 +41,9 @@
 		32CF251F1DC6045800817C3C /* COR-NOV16_elements-template-instagram_FLASH-gimp-margin.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "COR-NOV16_elements-template-instagram_FLASH-gimp-margin.jpg"; sourceTree = "<group>"; };
 		32CF25201DC6045800817C3C /* COR-NOV16_elements-template-instagram_FLASH-gimp.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "COR-NOV16_elements-template-instagram_FLASH-gimp.jpg"; sourceTree = "<group>"; };
 		32CF25211DC6045800817C3C /* COR-NOV16_elements-template-instagram_FLASH.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "COR-NOV16_elements-template-instagram_FLASH.jpg"; sourceTree = "<group>"; };
+		32CF25231DC7DD0F00817C3C /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		32CF25241DC7DD0F00817C3C /* compositing.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = compositing.py; sourceTree = "<group>"; };
+		32CF25251DC7DD0F00817C3C /* conversion.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = conversion.py; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -61,14 +62,13 @@
 		32A3A3081DAD2BE6006790E9 = {
 			isa = PBXGroup;
 			children = (
+				32CF25221DC7DD0F00817C3C /* helper */,
 				32CF25021DC6045800817C3C /* resources */,
 				3244A3AA1DAF5912007CADA6 /* classes */,
 				3244A3AE1DAF599E007CADA6 /* __init__.py */,
 				32CF24FC1DB6656B00817C3C /* test.py */,
 				32CF24FD1DB684A500817C3C /* main.py */,
 				32CF25011DC5FF8600817C3C /* printerlist.py */,
-				32CF24FE1DB7721800817C3C /* compositing.py */,
-				3244A3AF1DAF5A9A007CADA6 /* conversion.py */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,6 +150,16 @@
 				32CF25211DC6045800817C3C /* COR-NOV16_elements-template-instagram_FLASH.jpg */,
 			);
 			path = template;
+			sourceTree = "<group>";
+		};
+		32CF25221DC7DD0F00817C3C /* helper */ = {
+			isa = PBXGroup;
+			children = (
+				32CF25231DC7DD0F00817C3C /* __init__.py */,
+				32CF25241DC7DD0F00817C3C /* compositing.py */,
+				32CF25251DC7DD0F00817C3C /* conversion.py */,
+			);
+			path = helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

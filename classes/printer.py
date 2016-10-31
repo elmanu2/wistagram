@@ -3,22 +3,29 @@
 import cups
 import subprocess
 
-#OS printers operations
+##OS printers operations
+#
+#
 class Printer(object):
+
+    ##@var printers
+    #The printers data dictionary from cups
+
+    ##Constructor
     def __init__(self):
         con = cups.Connection()
         self.printers = con.getPrinters()
         print self.printers
 
-    #Get the raw input dictionnary
-    #return : Dictionary
+    ##Get the raw input dictionnary
+    #@return : Dictionary
     @staticmethod
     def getPrinterDict():
         con = cups.Connection()
         return con.getPrinters()
 
-    #Is the printer registered in the OS?
-    #return : BOOL
+    ##Is the printer registered in the OS?
+    #@return : BOOL
     @staticmethod
     def exists(printername):
         printers = Printer.getPrinterDict()
@@ -28,8 +35,8 @@ class Printer(object):
                 exists = True
         return exists
 
-    #Get an information about a specific OS printer
-    #return : String
+    ##Get an information about a specific OS printer
+    #@return : String
     @staticmethod
     def information(printername,inputKey):
         printers = Printer.getPrinterDict()
@@ -41,8 +48,8 @@ class Printer(object):
                         return valueInfo
         return None
 
-    #List of the printers available in the Operating System
-    #return : [String]
+    ##List of the printers available in the Operating System
+    #@return : [String]
     @staticmethod
     def osPrinter():
         printers = Printer.getPrinterDict()
@@ -51,8 +58,8 @@ class Printer(object):
             printernames += [key]
         return printernames
 
-    #Detect if the printer is online/offline
-    #return : BOOL
+    ##Detect if the printer is online/offline
+    #@return : BOOL
     @staticmethod
     def printerOnline(printername):
         info = Printer.information(printername,"printer-state-reasons")
@@ -66,9 +73,9 @@ class Printer(object):
         else :
             print printername + " unknown state"
 
-    #Compute printer command
+    ##Compute printer command
     #lpr -P Canon_CP900 -o media="Postcard(4x6in)" [filepath]
-    #return : [String]
+    #@return : [String]
     @staticmethod
     def computePrinterCommand(filepath,
                               printername="Canon_CP900",
@@ -76,9 +83,9 @@ class Printer(object):
 
         return ["lpr","-P",printername,"-o","media="+printerFormat,filepath]
 
-    #Send printer job
+    ##Send printer job
     #printer command :[lpr,-P,Canon_CP900,-o,media="Postcard(4x6in)",[filepath]]
-    #return : Void
+    #@return : Void
     @staticmethod
     def sendPrinterJob(printerCommand):
         try :

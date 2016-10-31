@@ -11,8 +11,8 @@ from classes.photo import Photo
 from classes.printFormat import PrintFormat
 from classes.configuration import Configuration
 from classes.printer import Printer
-from conversion import *
-from compositing import *
+from helper.conversion import *
+from helper.compositing import *
 
 
 #Selphy CP 910 : 10x15cm

@@ -1,72 +1,85 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+
 import ConfigParser
 import io
 import os
 
-
-#Configuration
+## Configuration
+#
+#
 class Configuration(object):
+
+    ##@var filename
+    #filepath
+
+    ##@var rawConfiguration
+    #cfg raw object
+
+    ##Constructor
     def __init__(self,filename):
         self.filename = filename
         config = ConfigParser.RawConfigParser()
         config.read(filename)
         self.rawConfiguration = config
 
-    #Template filepath
-    #return : String
+    ##Template filepath
+    #
+    #@return String
     def getTemplateName(self):
         return self.rawConfiguration.get('template', 'templateFilepath')
 
-    #Template margin color
-    #return : (Int,Int,Int)
+    ##Template margin color
+    #
+    #@return (Int,Int,Int)
     def getTemplateColor(self):
         rawColor = self.rawConfiguration.get('template', 'color')
         rgb = rawColor.split(',')
         return (int(rgb[0]), int(rgb[1]), int(rgb[2]))
 
-    #Printer OS name
-    #return : String
+    ##Printer OS name
+    #
+    #@return : String
     def getPrinterOsName(self):
         return self.rawConfiguration.get('printer','osname')
 
-    #Printer OS name
-    #return : String
+    ##Printer OS name
+    #@return : String
     def getPrinterOsFormat(self):
         return self.rawConfiguration.get('printer','osformat')
 
-    #Use Dpi stretch
-    #return : BOOL
+    ##Use Dpi stretch
+    #@return : BOOL
     def getPrinterDpiStretch(self):
         rawDpiStretch = self.rawConfiguration.get('printing','dpiStretch')
         return Configuration.str2Bool(rawDpiStretch)
 
-    #Printer margin
-    #return : (Int,Int)
+    ##Printer margin
+    #@return : (Int,Int)
     def getPrinterMargin(self):
         rawFormat = self.rawConfiguration.get('printing','margin')
         return Configuration.splitFormat(rawFormat)
 
-    #Printer margin dimension : "mm" or "inch"
-    #return : String
+    ##Printer margin dimension : "mm" or "inch"
+    #@return : String
     def getPrinterMarginDim(self):
         return self.rawConfiguration.get('printing','marginDim')
 
-    #Printer margin photo in pixels
-    #return : (Int,Int)
+    ##Printer margin photo in pixels
+    #@return : (Int,Int)
     def getPrinterMarginPhoto(self):
         rawFormat = self.rawConfiguration.get('printing','marginphoto')
         return Configuration.splitFormat(rawFormat)
 
-    #Printer margin template in pixels
-    #return : (Int,Int)
+    ##Printer margin template in pixels
+    #@return : (Int,Int)
     def getPrinterMarginTemplate(self):
         rawFormat = self.rawConfiguration.get('printing','margintemplate')
         return Configuration.splitFormat(rawFormat)
 
-    #Convert a string into a boolean value
-    #return : BOOL
+    ##Convert a string into a boolean value
+    #@return : BOOL
     @staticmethod
     def str2Bool(text):
         if text == "True":
@@ -82,22 +95,22 @@ class Configuration(object):
         else:
             return False
 
-    #Convert a string into a 3-uplet for colors
-    #return : (Int,Int,Int)
+    ##Convert a string into a 3-uplet for colors
+    #@return : (Int,Int,Int)
     @staticmethod
     def splitColor(text):
         rgb = text.split(',')
         return (int(rgb[0]), int(rgb[1]), int(rgb[2]))
 
-    #Convert a string into a 2-uplet for (width,height)
-    #return : (Int,Int)
+    ##Convert a string into a 2-uplet for (width,height)
+    #@return : (Int,Int)
     @staticmethod
     def splitFormat(text):
         widthHeight = text.split('x')
         return (int(widthHeight[0]),int(widthHeight[1]))
 
-    #List the *.cfg file in a directory
-    #return : [String]
+    ##List the *.cfg file in a directory
+    #@return : [String]
     @staticmethod
     def listConfigurationFiles(inputDir):
         filelist=os.listdir(inputDir)
@@ -108,8 +121,8 @@ class Configuration(object):
         #print(filelist)
         return filelist
 
-    #User index selection in an array
-    #return : Int
+    ##User index selection in an array
+    #@return : Int
     @staticmethod
     def userSelection(fileArray):
         selection = -1
@@ -122,9 +135,11 @@ class Configuration(object):
             selection =  int(float(userSelection))
         return selection
 
+    ##Print function
     def __repr__(self):
         return "Configuration()"
 
+    ##Print function
     def __str__(self):
         printValue = "[filename -> %s]\n" %(self.filename)
         printValue += "[template name -> %s]\n" %(self.getTemplateName())
