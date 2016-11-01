@@ -16,8 +16,11 @@ def generateFilepathWithSuffix(filepath,suffix):
     return filepathWithoutExtension + suffix + extension
 
 ##Add a margin and save the file (margin is for left,right,bottom and top)
+# Create an intermediate file templatePath-margin
 #@return String
 def addMarginOnTemplate(templatePath,margin,marginColor):
+    if(templatePath == "NoTemplate"):
+        return templatePath
     template = Image.open(templatePath)
     photoSize = template.size
     #print photoSize
@@ -33,6 +36,8 @@ def addMarginOnTemplate(templatePath,margin,marginColor):
 #Resize the photo if necessary, or resize the template if necessary
 #@return String
 def addPhotoOnTemplate(photoPath,templatePath,margin):
+    if(templatePath == "NoTemplate"):
+        return photoPath
     template = Image.open(templatePath)
     image = Image.open(photoPath)
 

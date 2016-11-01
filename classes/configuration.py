@@ -29,6 +29,13 @@ class Configuration(object):
         config.read(filename)
         self.rawConfiguration = config
 
+    ##Use template
+    #
+    #@return Bool
+    def getUseTemplate(self):
+        rawUseTemplate = self.rawConfiguration.get('template','useTemplate')
+        return Configuration.str2Bool(rawUseTemplate)
+
     ##Template filepath
     #
     #@return String
@@ -147,6 +154,7 @@ class Configuration(object):
     ##Print function
     def __str__(self):
         printValue = "[filename -> %s]\n" %(self.filename)
+        printValue += "[template use? -> %s]\n" %(self.getUseTemplate())
         printValue += "[template name -> %s]\n" %(self.getTemplateName())
         printValue += "[template color -> (%s,%s,%s)]\n" %(self.getTemplateColor())
         printValue += "[printer os name -> %s]\n" %(self.getPrinterOsName())

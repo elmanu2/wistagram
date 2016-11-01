@@ -79,7 +79,12 @@ def main():
     print cfg
 
     #templateFile = "./resources/test/template/COR-MARS16_elements-template-gimp.jpg"
-    templateFile = cfg.getTemplateName()
+    useTemplate = cfg.getUseTemplate()
+    if(useTemplate == True):
+        templateFile = cfg.getTemplateName()
+    else:
+        templateFile = "NoTemplate"
+
     #marginColor = (84,158,167)
     marginColor = cfg.getTemplateColor()
     #TODO = Manage difference between width and height margins
@@ -89,7 +94,8 @@ def main():
     if(cfg.getPrinterOsName() == "Canon_CP900"):
         printFormat = PrintFormat.SelphyCP900(dpiStretch=cfg.getPrinterDpiStretch())
     elif(cfg.getPrinterOsName() == "DNPDS620"):
-        print "No osname for this printer %s, quit" %(cfg.getPrinterOsName())
+        print "No osname and osformat for this printer %s\n"\
+              "Change the configuration file. Quit" %(cfg.getPrinterOsName())
         return
     else :
         print "No printer with this name %s, quit" %(cfg.getPrinterOsName())

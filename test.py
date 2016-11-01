@@ -231,6 +231,7 @@ def testConfiguration():
 
     configuration = Configuration(selectionFilepath)
     #Template configuration
+    useTemplate = configuration.getUseTemplate()
     templateName = configuration.getTemplateName()
     templateColor = configuration.getTemplateColor()
     #Printer configuration
@@ -250,6 +251,7 @@ def testConfiguration():
     assert(printerOsFormat == "\"Postcard(4x6in)\"")
 
     #Test Format configuration
+    assert(useTemplate)
     assert(templateName == "./resources/test/template/COR-NOV16_elements-template-instagram_FLASH-gimp.jpg")
     assert(templateColor == (216,123,98))
 
