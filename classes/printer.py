@@ -6,7 +6,9 @@ import subprocess
 ##
 # @file printer.py
 # Printer
-#
+# https://www.cups.org/doc/options.html?VERSION=1.7&Q=
+
+
 
 
 ##OS printers operations
