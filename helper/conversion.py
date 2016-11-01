@@ -41,12 +41,12 @@ def ppmm2ppi(ppmm):
 def ppi2ppmm(ppi):
     return float(ppi / inch2mm(1))
 
-#return length in mm
+##compute length in mm
 #@return float
 def length(resolution,ppmm):
     return resolution * ppmm
 
-#resolution from lentgh and ppmm
+##resolution from lentgh and ppmm
 #@return float resolution
 def resolution(length, ppmm,dimension="mm"):
     if(dimension == "in"):

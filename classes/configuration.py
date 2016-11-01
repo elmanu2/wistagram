@@ -158,6 +158,7 @@ class Configuration(object):
         printValue += "[printer margin photo -> (%s,%s)pixels]\n" %(self.getPrinterMarginPhoto())
         return printValue
 
+##Do nothing
 def main():
     #do nothing
     a = 10

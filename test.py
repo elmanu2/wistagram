@@ -8,6 +8,12 @@ from classes.configuration import Configuration
 from helper.conversion import *
 from helper.compositing import *
 
+##
+# @file test.py
+# Unit Tests
+#
+
+## Test Helper
 def testEqualWithAccuracy(float1,float2,precision):
     if ( math.fabs(float1 - float2) < precision):
         return True
@@ -15,6 +21,7 @@ def testEqualWithAccuracy(float1,float2,precision):
         print "%s is not equal to %s" %(float1,float2)
         return False
 
+## Test DPI computation with Canon Selphy CP900 and a photo
 def testFileWithSelphyCP900(filepath,dpiX,dpiY):
     printFormat = PrintFormat.SelphyCP900()
     printFormat.setPrinterMargin(10,10,"mm")
@@ -31,6 +38,7 @@ def testFileWithSelphyCP900(filepath,dpiX,dpiY):
     assert(imageDpiX == dpiX)
     assert(imageDpiY == dpiY)
 
+## Test DPI computation with Canon Selphy CP900 and a template
 def testFileWithSelphyCP900Template(filepath,dpiX,dpiY):
     printFormat = PrintFormat.SelphyCP900(dpiStretch=True)
     printFormat.setPrinterMargin(-1,-1,"mm")
@@ -47,7 +55,7 @@ def testFileWithSelphyCP900Template(filepath,dpiX,dpiY):
     assert(imageDpiX == dpiX)
     assert(imageDpiY == dpiY)
 
-
+## Test DPI computation for files with different resolutions
 def testSelphyCP900():
     print "\n****TEST SELPHY CP900 Instagram file****"
     testFileWithSelphyCP900("./resources/test/finhalmn/1313840674994551403.jpg",172,172)
@@ -57,11 +65,15 @@ def testSelphyCP900():
     testFileWithSelphyCP900("./resources/test/bentalou/712495213394164801.jpg",180,180)
     print "TESTS ON SELPHY CP900 INSTAGRAM FILES PASSED SUCCESSFULLY"
 
+## Test DPI computation for templates
 def testSelphyCP900Template():
     print "\n****TEST SELPHY CP900 Template****"
     testFileWithSelphyCP900Template("./resources/test/template/COR-MARS16_elements-template-gimp.jpg",297,301)
     print "TESTS ON SELPHY CP900 TEMPLATE PASSED SUCCESSFULLY"
 
+## Test compositing with a photo and a template\n
+# 1 - Add a margin to the template\n
+# 2 - Add a margin to the photo
 def testAddTemplate():
     print "\n****TEST ADDING TEMPLATE****"
     photopath = "./resources/test/bentalou/712495213394164801.jpg"
@@ -115,6 +127,7 @@ def testAddTemplate():
 
     print"TESTS ON MARGIN + TEMPLATE + PHOTO  PASSED SUCCESSFULLY"
 
+##Test dimension conversion
 def unitTesting():
 
     print "\n****UNIT TESTS****"
@@ -201,12 +214,14 @@ def unitTesting():
 
     print "TESTS ON PPI COMPUTATION PASSED SUCCESSFULLY"
 
+## Test Printer class
 def testPrinter():
     Printer()
     assert(Printer.exists("Canon_CP900"))
     print Printer.osPrinter()
     #assert(Printer.printerOnline("Canon_CP900"))
 
+## Test COnfiguration class
 def testConfiguration():
     print "\n****TEST CONFIGURATION****"
     rootDirectory = "./resources/test/configurations"
@@ -247,7 +262,7 @@ def testConfiguration():
     print configuration
     print "TESTS ON CONFIGURATION PASSED SUCCESSFULLY"
 
-
+## Launch unit testing
 def main():
     print "\n"
     unitTesting()
@@ -258,5 +273,6 @@ def main():
     testConfiguration()
     print "\n\n***TESTS PASSED SUCCESSFULLY***\n"
     return
+
 if __name__ == "__main__":
     main()

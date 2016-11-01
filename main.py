@@ -5,8 +5,6 @@ import popen2
 import os
 import math
 
-
-
 from classes.photo import Photo
 from classes.printFormat import PrintFormat
 from classes.configuration import Configuration
@@ -14,20 +12,19 @@ from classes.printer import Printer
 from helper.conversion import *
 from helper.compositing import *
 
+##
+# @file main.py
+# Main
+#
 
-#Selphy CP 910 : 10x15cm
-#                3,93701 x 5,90551 inches
-#Format Instagram : 612 x 612 / 1080 x 1080
-#PPI pour remplir 10cm -> 612 / 3,93701 -> 155
-#                      -> 1080 / 3,93701 -> 274
-
-
-
-
+## return immediate subdirectories
+#@return [String]
 def getImmediateSubdirectories(a_dir):
     return [name for name in os.listdir(a_dir)
             if os.path.isdir(os.path.join(a_dir, name))]
 
+## User prompt for an index in an array
+#@return int
 def userSelectionInArray(subDirArray):
     selection = -1
     while ( (selection < 0) or (selection >= len(subDirArray))):
@@ -38,6 +35,11 @@ def userSelectionInArray(subDirArray):
         selection =  int(float(userSelection))
     return selection
 
+## return a list of *.jpg files\n
+# exclude files with "print"\n
+# exclude files with "template"\n
+# exclude files with "python"
+#@return [String]
 def listScreenShotFiles(inputDir):
     filelist=os.listdir(inputDir)
     for fichier in filelist[:]: # filelist[:] makes a copy of filelist.
@@ -58,26 +60,7 @@ def listScreenShotFiles(inputDir):
     return filelist
 
 
-##print command : lpr -P Canon_CP900 -o media="Postcard(4x6in)" [filepath]
-##print center
-#def printCommand(filename):
-#    cmdPrinter = "lpr -P Canon_CP900 -o media=\"Postcard(4x6in)\" "
-#    cmd = cmdPrinter + filename + "r"
-#    print "Command : %s" %cmd
-#    #res = popen2.popen4(cmd)
-#    try :
-#        process = subprocess.check_output(["lpr","-P","Canon_CP900","-o","media=\"Postcard(4x6in)\"",filename])
-#        print "Command OK"
-#    except subprocess.CalledProcessError, e :
-#        print "Command FAILED"
-#        #print e
-#
-#    #print process.communicate()
-#    #print process.communicate()
-#    #res = subprocess.check_output(["lpr","-P","Canon_CP900","-o","media=\"Postcard(4x6in)\"",filename],stderr=subprocess.STDOUT,shell=True)
-#    #print res
-#    #subprocess.Popen(["lpr","-P","Canon_CP900","-o","media=\"Postcard(4x6in)\"",filename])
-
+##MAIN
 def main():
 
 
