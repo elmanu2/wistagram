@@ -90,6 +90,8 @@ class Printer(object):
                               printerFormat="media=\"Postcard(4x6in)\""):
 
         return ["lpr","-P",printername,"-o","media="+printerFormat,filepath]
+    #return ["lpr","-P",printername,"-o","orientation-requested=3","-o","media="+printerFormat,filepath]
+
 
     ##Send printer job
     #printer command :[lpr,-P,Canon_CP900,-o,media="Postcard(4x6in)",[filepath]]

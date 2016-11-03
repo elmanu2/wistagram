@@ -93,6 +93,8 @@ def main():
     #The printer
     if(cfg.getPrinterOsName() == "Canon_CP900"):
         printFormat = PrintFormat.SelphyCP900(dpiStretch=cfg.getPrinterDpiStretch())
+    elif(cfg.getPrinterOsName() == "Dai_Nippon_Printing_DP_DS620"):
+        printFormat = PrintFormat.DNPDS620(dpiStretch=cfg.getPrinterDpiStretch())
     elif(cfg.getPrinterOsName() == "DNPDS620"):
         print "No osname and osformat for this printer %s\n"\
               "Change the configuration file. Quit" %(cfg.getPrinterOsName())

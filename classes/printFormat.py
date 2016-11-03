@@ -67,7 +67,7 @@ class PrintFormat(object):
     def DNPDS620(dpiStretch=False):
         printer = PrintFormat(100,152,"mm")
         printer.dpiStretch = dpiStretch
-        printer.osname = "DNPDS620"
+        printer.osname = "Dai_Nippon_Printing_DP_DS620"
         return printer
 
     ##set stretch horizontal or vertical based on ppi/ppmmm
